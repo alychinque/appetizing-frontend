@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appetizing</title>
+    <style>
+        body {
+            background-color: #e5e5e5;
+        }
+
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .footer {
+
+            background-color: #ff4757;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 70px;
+        }
+
+        .table {
+            width: 50%;
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table tr th {
+            border-bottom: 1px solid black;
+            padding: 1.5%;
+            text-align: left;
+        }
+
+        table tr td {
+            padding: 1.5%;
+        }
+
+        .btn-primary {
+            background-color: #1e90ff;
+            padding: 1%;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border: red;
+        }
+
+        .btn-secondary {
+            background-color: #7bed9f;
+            padding: 1%;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img class="logo" src="assets/images/logo.png" alt="logo">
+
+    <h1>Add Admin</h1>
+
+
+    <form action="" method="POST">
+
+        <table class="table">
+            <tr>
+                <td>Full Name: </td>
+                <td>
+                    <input type="text" name="full_name" placeholder="Enter Your Name">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Username: </td>
+                <td>
+                    <input type="text" name="username" placeholder="Your Username">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Password: </td>
+                <td>
+                    <input type="password" name="password" placeholder="Your Password">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="submit" value="Add Admin" class="btn-secondary">
+                    <a href="dashboardAdmin()" class="btn-primary">Return</a>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+    <footer>
+        <div class="footer">
+            <div class="wrapper">
+                <p class="text-center">Appetizing application - Rael Guimaraes</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -13,6 +13,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { FoodComponent } from './food/food.component';
 import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
+import { DashboardLoginComponent } from './dashboard-login/dashboard-login.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { DashboardDrinksComponent } from './dashboard-drinks/dashboard-drinks.component';
+import { DashboardItemsComponent } from './dashboard-items/dashboard-items.component';
+import { DashboardMealComponent } from './dashboard-meal/dashboard-meal.component';
+import { DashboardOrderComponent } from './dashboard-order/dashboard-order.component';
+import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
+import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
+import { DashboardAddAdminComponent } from './dashboard-add-admin/dashboard-add-admin.component';
+import { DashboardAddDrinkComponent } from './dashboard-add-drink/dashboard-add-drink.component';
+import { DashboardAddItemComponent } from './dashboard-add-item/dashboard-add-item.component';
+import { DashboardAddMealComponent } from './dashboard-add-meal/dashboard-add-meal.component';
+import { DashboardAddOrderComponent } from './dashboard-add-order/dashboard-add-order.component';
+import { DashboardUpdateAdminComponent } from './dashboard-update-admin/dashboard-update-admin.component';
+import { DashboardUpdateDrinkComponent } from './dashboard-update-drink/dashboard-update-drink.component';
+import { DashboardUpdateItemComponent } from './dashboard-update-item/dashboard-update-item.component';
+import { DashboardUpdateMealComponent } from './dashboard-update-meal/dashboard-update-meal.component';
+import { DashboardUpdateOrderComponent } from './dashboard-update-order/dashboard-update-order.component';
 
 
 const routes: Routes = [
@@ -21,7 +39,26 @@ const routes: Routes = [
   {path: 'login' , component: LoginComponent},
   {path: 'signup' , component: SignupComponent},
   {path: 'recovery' , component: RecoveryPasswordComponent},
-  {path: 'food' , component: FoodComponent}
+  {path: 'food' , component: FoodComponent},
+  {path: 'dashboard-login', component: DashboardLoginComponent},
+  {path: 'dashboard-admin', component: DashboardAdminComponent},
+  {path: 'dashboard-drinks', component: DashboardDrinksComponent},
+  {path: 'dashboard-items', component: DashboardItemsComponent},
+  {path: 'dashboard-meal', component: DashboardMealComponent},
+  {path: 'dashboard-order', component: DashboardOrderComponent} ,
+  {path: 'dashboard-user', component: DashboardUserComponent},
+  {path: 'dashboard-home', component: DashboardHomeComponent},
+  {path: 'dashboard-add-admin', component: DashboardAddAdminComponent},
+  {path: 'dashboard-add-drink', component: DashboardAddDrinkComponent},
+  {path: 'dashboard-add-item', component: DashboardAddItemComponent},
+  {path: 'dashboard-add-meal', component: DashboardAddMealComponent},
+  {path: 'dashboard-add-order', component: DashboardAddOrderComponent},
+  {path: 'dashboard-update-admin', component: DashboardUpdateAdminComponent},
+  {path: 'dashboard-update-drink', component: DashboardUpdateDrinkComponent},
+  {path: 'dashboard-update-item', component: DashboardUpdateItemComponent},
+  {path: 'dashboard-update-meal', component: DashboardUpdateMealComponent},
+  {path: 'dashboard-update-order', component: DashboardUpdateOrderComponent}
+
 ];
 
 @NgModule({
@@ -31,7 +68,24 @@ const routes: Routes = [
     SignupComponent,
     HomeComponent,
     FoodComponent,
-    RecoveryPasswordComponent
+    RecoveryPasswordComponent,
+    DashboardLoginComponent,
+    DashboardAdminComponent,
+    DashboardDrinksComponent,
+    DashboardItemsComponent,
+    DashboardMealComponent,
+    DashboardOrderComponent,
+    DashboardUserComponent,
+    DashboardHomeComponent,
+    DashboardAddAdminComponent,
+    DashboardAddDrinkComponent,
+    DashboardAddItemComponent,
+    DashboardAddMealComponent,
+    DashboardAddOrderComponent,
+    DashboardUpdateAdminComponent,
+    DashboardUpdateDrinkComponent,
+    DashboardUpdateItemComponent,
+    DashboardUpdateMealComponent
   ],
   imports: [
     BrowserModule,

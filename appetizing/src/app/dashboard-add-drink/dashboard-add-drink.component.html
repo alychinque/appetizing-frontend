@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appetizing</title>
+    <style>
+        body {
+            background-color: #e5e5e5;
+        }
+
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .footer {
+
+            background-color: #ff4757;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 70px;
+        }
+
+        .table {
+            width: 50%;
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table tr th {
+            border-bottom: 1px solid black;
+            padding: 1.5%;
+            text-align: left;
+        }
+
+        table tr td {
+            padding: 1.5%;
+        }
+
+        .btn-primary {
+            background-color: #1e90ff;
+            padding: 1%;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border: red;
+        }
+
+        .btn-secondary {
+            background-color: #7bed9f;
+            padding: 1%;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img class="logo" src="img/logo.png" alt="logo">
+
+    <h1>Add Drink</h1>
+
+
+    <form action="" method="POST">
+
+        <table class="table">
+            <tr>
+                <td>Name: </td>
+                <td>
+                    <input type="text" name="name" placeholder="Enter Drink Name">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Price: </td>
+                <td>
+                    <input type="number" name="price" placeholder="Enter Drink Price">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Category: </td>
+                <td>
+                    <input type="radio" name="category" value="beer"> beer 
+                    <input type="radio" name="category" value="wine"> wine
+                    <input type="radio" name="category" value="cocktail"> cocktail 
+                    <input type="radio" name="category" value="soft drink"> soft drink 
+                    <input type="radio" name="category" value="gin"> gin
+                    <input type="radio" name="category" value="vodka"> vodka
+                </td>
+            </tr>
+
+            <tr>
+                <td>Status: </td>
+                <td>
+                    <input type="radio" name="active" value="Yes"> Yes 
+                    <input type="radio" name="active" value="No"> No 
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="submit" value="Add Drink" class="btn-secondary">
+                    <a href="manage-drinks.html" class="btn-primary">Return</a>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+    <footer>
+        <div class="footer">
+            <div class="wrapper">
+                <p class="text-center">Appetizing application - Rael Guimaraes</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

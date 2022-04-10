@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage</title>
+    <style>
+        body {
+            background-color: #e5e5e5;
+        }
+
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+            width: 300px;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .menu {
+            border-bottom: 1px solid grey;
+            text-align: center;
+            margin-top: 0px;  
+            margin-bottom: 30px;    
+        }
+
+        .menu ul {
+            list-style-type: none;
+        }
+
+        .menu ul li {
+
+            display: inline;
+            padding: 2%;
+        }
+
+        .menu ul li a {
+
+            text-decoration: none;
+            font-weight: bold;
+            color: #ff6b81;
+            font-size: large;
+        }
+
+        menu ul li a:hover {
+
+            color: #ffc15e;
+        }
+        .footer{
+
+    background-color: #ff4757;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 70px;
+}
+.table{
+    width: 50%;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+table tr th{
+    border-bottom: 1px solid black;
+    padding: 1.5%;
+    text-align: left;
+}
+
+table tr td{
+    padding: 1.5%;
+}
+.btn-primary{
+    background-color: #1e90ff;
+    padding: 1%;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 30px;
+}
+.btn-secondary{
+    background-color: #7bed9f;
+    padding: 1%;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-danger{
+    background-color: #ff6b81;
+    padding: 1%;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <img class="logo" src="img/logo.png" alt="logo">
+
+    <h1>Manage Meal</h1>
+
+    <div class="menu text-center">
+        <div class="wrapper">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="manage-admin.html">Admin</a></li>
+                <li><a href="manage-drinks.html">Drinks</a></li>
+                <li><a href="manage-item.html">Items</a></li>
+                <li><a href="manage-order.html">Order</a></li>
+                <li><a href="manage-user.html">Users</a></li>
+                <li><a href="">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <a href="add-meal.html" class="btn-primary">Add Meal</a>
+
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Item</th>
+            <th>Allergies</th>
+            <th>Extras</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td>Food 1</td>
+            <td>Price 1</td>
+            <td>Item</td>
+            <td>Allergies 1</td>
+            <td>Extra 1</td>
+            <td>is active</td>
+            <td>
+                <a href="update-meal.html" class="btn-secondary">Update Meal</a>
+                <a href="" class="btn-danger">Delete Meal</a>
+            </td>
+        </tr>
+    </table>
+
+    <footer>
+        <div class="footer">
+            <div class="wrapper">
+                <p class="text-center">Appetizing application - Rael Guimaraes</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
