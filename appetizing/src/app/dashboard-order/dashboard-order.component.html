@@ -103,25 +103,25 @@ table tr td{
 
 <body>
 
-    <img class="logo" src="img/logo.png" alt="logo">
+    <img class="logo" src="assets/images/logo.png" alt="logo">
 
     <h1>Manage Order</h1>
 
     <div class="menu text-center">
         <div class="wrapper">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="manage-admin.html">Admin</a></li>
-                <li><a href="manage-drinks.html">Drinks</a></li>
-                <li><a href="manage-item.html">Items</a></li>
-                <li><a href="manage-meal.html">Meal</a></li>
-                <li><a href="manage-user.html">Users</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardHome()">Home</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardAdmin()">Admin</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardDrinks()">Drinks</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardItems()">Items</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardMeal()">Meal</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardUser()">Users</a></li>
                 <li><a href="">Logout</a></li>
             </ul>
         </div>
     </div>
 
-    <a href="add-order.html" class="btn-primary">Add Order</a>
+    <a href="javascript:void(0)" (click)="addOrder()" class="btn-primary">Add Order</a>
 
     <table class="table">
         <tr>
@@ -145,7 +145,7 @@ table tr td{
             <td>Today</td>
             <td>is active</td>
             <td>
-                <a href="update-order.html" class="btn-secondary">Update Order</a>
+                <a href="javascript:void(0)" (click)="updateOrder()" class="btn-secondary">Update Order</a>
                 <a href="" class="btn-danger">Delete Order</a>
             </td>
         </tr>

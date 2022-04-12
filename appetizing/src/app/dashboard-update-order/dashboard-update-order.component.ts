@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-update-order',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardUpdateOrderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
+  }
+
+  dashboardOrder(){
+    this.router.navigate(['dashboard-order']);
+
   }
 
 }

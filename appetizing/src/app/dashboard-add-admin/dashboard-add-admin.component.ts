@@ -17,5 +17,5 @@ export class DashboardAddAdminComponent implements OnInit {
     this.router.navigate(['dashboard-admin']);
 
   }
-
+  
 }

@@ -109,25 +109,25 @@
 
 <body>
 
-    <img class="logo" src="img/logo.png" alt="logo">
+    <img class="logo" src="assets/images/logo.png" alt="logo">
 
     <h1>Manage Items</h1>
 
     <div class="menu text-center">
         <div class="wrapper">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="manage-admin.html">Admin</a></li>
-                <li><a href="manage-drinks.html">Drinks</a></li>
-                <li><a href="manage-food.html">Food</a></li>
-                <li><a href="manage-order.html">Order</a></li>
-                <li><a href="manage-user.html">Users</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardHome()">Home</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardAdmin()">Admin</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardDrinks()">Drinks</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardMeal()">Meal</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardOrder()">Order</a></li>
+                <li><a href="javascript:void(0)" (click)="dashboardUser()">Users</a></li>
                 <li><a href="">Logout</a></li>
             </ul>
         </div>
     </div>
 
-    <a href="add-item.html" class="btn-primary">Add Item</a>
+    <a href="javascript:void(0)" (click)="addItem()" class="btn-primary">Add Item</a>
 
     <table class="table">
         <tr>
@@ -141,7 +141,7 @@
             <td>price 1</td>
             <td>Status 1</td>
             <td>
-                <a href="update-item.html" class="btn-secondary">Update Item</a>
+                <a href="javascript:void(0)" (click)="updateItem()" class="btn-secondary">Update Item</a>
                 <a href="" class="btn-danger">Delete Item</a>
             </td>
         </tr>
