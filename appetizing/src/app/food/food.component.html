@@ -37,29 +37,39 @@
                                 Login</a>
                         </li>
                         <li *ngIf="totalQuantity > 0" class="nav-item mini-cart">
-                            <a href="#" class="nav-link">
+                            <a href="javascript:void(0)" class="nav-link">
                                 <i class="fas fa-shopping-bag"></i>
                                 <sup class="cart-quantity">{{totalQuantity}}</sup>
                             </a>
                             <div class="mini-cart-box">
-                                <div *ngFor="let meal of cartItems" class="cart-item">
+                                <div *ngFor="let meal of cartMeal" class="cart-item">
                                     <div class="thumb">
                                         <img class="w-100" src="assets/images/cart2.png" alt="cart-image">
                                     </div>
                                     <div class="content">
                                         <h5 class="title"><a href="javascript:void(0)">{{meal.nameMeal}}</a></h5>
                                         <span class="product-quantity">{{meal.quantity}}×</span>
-                                        <a href="javascript:void(0)" (click)="deleteItem(meal._id)" class="cart-trash"><i class="fa fa-trash"></i></a>
+                                        <a href="javascript:void(0)" (click)="deleteItem(meal._id)"
+                                            class="cart-trash"><i class="fa fa-trash"></i></a>
+                                    </div>
+                                </div>
+                                <div *ngFor="let drink of cartDrink" class="cart-item">
+                                    <div class="thumb">
+                                        <img class="w-100" src="assets/images/cart1.png" alt="cart-image">
+                                    </div>
+                                    <div class="content">
+                                        <h5 class="title"><a href="javascript:void(0)">{{drink.nameDrink}}</a></h5>
+                                        <span class="product-quantity">{{drink.quantity}}×</span>
+                                        <a href="javascript:void(0)" (click)="deleteItemDrink(drink._id)"
+                                            class="cart-trash"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </div>
                                 <div class="cart-total-money">
                                     <h4>Total: <span class="money">${{totalPrice | number : '.2-2'}}</span></h4>
                                 </div>
                                 <div class="cart-btn">
-                                    <a href="javascript:void(0)">View Cart</a>
-                                    <a href="javascript:void(0)">Checkout</a>
+                                    <a href="javascript:void(0)" (click)="checkout()">Checkout</a>
                                 </div>
-
                             </div>
                         </li>
                     </ul>
@@ -74,7 +84,7 @@
 <div class="features-area section-pt">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-sm-6">
+            <div (click)="clickMenuAction1()" class="col-lg-3 col-sm-6">
                 <div class="single-feature shadow-lg p-3">
                     <div class="feature-icon">
                         <img src="assets/images/fast-food-icon.png" class="img-fluid" alt="Fast Food" />
@@ -84,17 +94,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single-feature shadow-lg p-3">
-                    <div class="feature-icon">
-                        <img src="assets/images/desert-icon.png" class="img-fluid" alt="Dessert" />
-                    </div>
-                    <div class="feature-text">
-                        <h4 class="heading-4">Dessert</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
+            <div (click)="clickMenuAction2()" class="col-lg-3 col-sm-6">
                 <div class="single-feature shadow-lg p-3">
                     <div class="feature-icon">
                         <img src="assets/images/glass-icon.png" class="img-fluid" alt="Cocktails" />
@@ -113,33 +113,22 @@
 <div class="foods-tabs-area section-ptb bg-semi-white">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <div class="section-title-3 mb-5">
-                    <h2 class="heading-2-extra">Quick Pick Food</h2>
-                </div>
-                <div class="nav menu-tab flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
-                    aria-orientation="vertical">
-                    <a href="#" class="nav-link active" id="v-pills-chiken-tab" data-bs-toggle="pill"
-                        data-bs-target="#v-pills-chiken" role="tab" aria-controls="v-pills-chiken" aria-selected="true">
-                        <span class="tab-icon"><img src="assets/images/meat-icon.png" alt="chikenDish"></span>
-                        <span class="heading-6">All Dish</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-8">
+            <div class="col-lg-6">
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-chiken" role="tabpanel"
                         aria-labelledby="v-pills-chiken-tab">
                         <div class="row">
-                            <div *ngFor="let meal of dataRecv" class="col-lg-6">
+                            <div class="row" *ngIf="clickDrink == false">
+                            <div *ngFor="let meal of dataRecv; let indexMeal = index" class="col-lg-6">
                                 <div class="card border-0 product-card custom-round">
                                     <div class="card-thumb">
                                         <a href="javascript:void(0)" class="black-overlay"><img
                                                 src="assets/images/food_01.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="javascript:void(0)" (click)="addCart(meal)" class="sm-btn"><i class="fas fa-plus"></i> Add To Cart</a>
+                                        <a href="javascript:void(0)" (click)="addCart(meal)" class="sm-btn"><i
+                                                class="fas fa-plus"></i> Add To Cart</a>
                                     </div>
                                     <div class="card-body">
-                                        <h6 class="heading-6"><a >{{meal.nameMeal}}</a></h6>
+                                        <h6 class="heading-6"><a>{{meal.nameMeal}}</a></h6>
                                         <div class="card-meta d-flex py-2">
                                             <div class="product-price">
                                                 <span>${{meal.priceMeal}}</span>
@@ -147,298 +136,61 @@
                                         </div>
                                     </div>
                                     <div class="form-check mx-auto mb-5">
-                                        <h6 class="heading-5"><a >Contains</a></h6>
+                                        <h6 class="heading-5"><a>Contains</a></h6>
                                         <div *ngFor="let items of meal.items">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked disabled>
-                                        <label class="form-check-label" for="flexCheckChecked">
-                                          {{items.name}}
-                                        </label>
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckChecked" checked disabled>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                {{items.nameItem}}
+                                            </label>
                                         </div>
-                                      </div>
-                                      <div class="form-check mx-auto">
-                                        <h6 class="heading-5"><a >Extras</a></h6>
-                                        <div *ngFor="let extras of meal.extras">
-                                        <input (click)="updateCart(meal)" class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                        <label class="form-check-label" for="flexCheckChecked">
-                                          {{extras.name}}
-                                        </label>
+                                    </div>
+                                    <div>
+                                        <div class="form-check mx-auto">
+                                            <h6 class="heading-5"><a>Extras</a></h6>
+                                            <div *ngFor="let extras of meal.extras; let indexExtra = index">
+                                                <input *ngIf="extras._id != null" [(ngModel)]="extras.checked"
+                                                    (change)="updateElement(extras, meal, indexExtra, indexMeal)"
+                                                    class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckChecked" [checked]="extras.checked">
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    {{extras.nameItem}}
+                                                </label>
+                                            </div>
                                         </div>
-                                      </div>
+                                    </div>
                                 </div>
-
                             </div>
-
-                        </div>
-                    </div> 
-
-                    <div class="tab-pane fade" id="v-pills-seafood" role="tabpanel"
-                        aria-labelledby="v-pills-seafood-tab">
-                        <div class="row">
-                            <div class="col-lg-6">
+                            </div>
+                            <div class="row" *ngIf="clickDrink == true">
+                            <div *ngFor="let drink of dataRecvDrink; let indexDrink = index" class="col-lg-6">
                                 <div class="card border-0 product-card custom-round">
                                     <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
+                                        <a href="javascript:void(0)" class="black-overlay"><img
                                                 src="assets/images/food_02.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
+                                        <a href="javascript:void(0)" (click)="addCartDrink(drink)" class="sm-btn"><i class="fas fa-plus"></i> Add To
+                                            Cart</a>
                                     </div>
                                     <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Fry Chicken And Olive Pizza</a></h6>
+                                        <h6 class="heading-6"><a>{{drink.nameDrink}}</a></h6>
                                         <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">4.5</span>
-                                            </div>
                                             <div class="product-price">
-                                                <span>$19.00</span>
+                                                <span>${{drink.priceDrink}}</span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_03.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Chicken Masala</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">5.00</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$99.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_04.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Rosted Chicken</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">2.5</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$65.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_05.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Chicken Wings</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">3.5</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$28.00</span>
-                                            </div>
-                                        </div>
+                                    <div class="form-check mx-auto mb-5">
+                                        <h6 class="heading-5"><a>{{drink.category}}</a></h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- Tab Pane End -->
-                    <div class="tab-pane fade" id="v-pills-burger" role="tabpanel" aria-labelledby="v-pills-burger-tab">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_05.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Chicken Masala</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">5.00</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$99.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_02.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Rosted Chicken</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">2.5</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$65.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_08.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Chicken And Olive Pizza</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">4.5</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$19.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
 
-                            <div class="col-md-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_01.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Chicken Wings</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">3.5</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$28.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- Tab Pane End -->
-                    <div class="tab-pane fade" id="v-pills-combo" role="tabpanel" aria-labelledby="v-pills-combo-tab">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_01.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Chicken And Olive Pizza</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">4.5</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$19.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_06.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Chicken Masala</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">5.00</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$99.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_07.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Rosted Chicken</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">2.5</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$65.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="product_details.html" class="black-overlay"><img
-                                                src="assets/images/food_08.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="#" class="sm-btn"><i class="fas fa-plus"></i> Add To Bag</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a href="#">Chicken Wings</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="rating-point">3.5</span>
-                                            </div>
-                                            <div class="product-price">
-                                                <span>$28.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- Tab Pane End -->
-                </div>
+                    </div>
+                </div><!-- Tab Pane End -->
             </div>
+
         </div> <!-- COL END -->
     </div>
 </div>

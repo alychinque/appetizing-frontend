@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
    this.router.navigate(['signup']);
 }
 
-food() {
-  this.router.navigate(['food']);
+foodOrDrink(id:string) {
+  this.router.navigate(['food', id]);
 }
 
 }

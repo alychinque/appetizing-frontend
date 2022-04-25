@@ -13,6 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { FoodComponent } from './food/food.component';
 import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
+import { DashboardAddAdminComponent } from './dashboard-add-admin/dashboard-add-admin.component';
+import { DashboardMealComponent } from './dashboard-meal/dashboard-meal.component';
+import { DashboardAddMealComponent } from './dashboard-add-meal/dashboard-add-meal.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 const routes: Routes = [
@@ -21,7 +25,10 @@ const routes: Routes = [
   {path: 'login' , component: LoginComponent},
   {path: 'signup' , component: SignupComponent},
   {path: 'recovery' , component: RecoveryPasswordComponent},
-  {path: 'food' , component: FoodComponent}
+  {path: 'food' , component: FoodComponent},
+  {path: 'food/:id' , component: FoodComponent},
+  {path: 'dash' , component: DashboardAddMealComponent},
+  {path: 'checkout' , component: CheckoutComponent}
 ];
 
 @NgModule({
@@ -31,7 +38,8 @@ const routes: Routes = [
     SignupComponent,
     HomeComponent,
     FoodComponent,
-    RecoveryPasswordComponent
+    RecoveryPasswordComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,140 @@
+<!-- Header Start -->
+<header class="header">
+    <div class="primary-navigation sticky-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-md  navbar-light">
+                <!-- logo <a class="navbar-brand pl-5" href="index-2.html"><img src="assets/images/logo.png" alt="BrandNav"></a> -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index-2.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="menu.html">Menu</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Pages
+                                <i class="fas fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="register.html">Sign Up</a></li>
+                                <li><a class="dropdown-item" href="account.html">Account</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item login-item">
+                            <a class="nav-link" href="login.html"><i class="far fa-user"></i>
+                                Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- Header End -->
+
+    <!-- Start Page Header -->
+    <div class="page-header-wrapper">
+        <div class="page-header-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mx-auto text-center">
+                        <div class="page-header-container">
+                            <div class="page-header-content">
+                                <h1 class="heading-one">Checkout</h1>
+                                <div class="page-nav">
+                                    <ul>
+                                        <li><a href="#">Home ></a></li>
+                                        <li>Checkout</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+
+<!-- Start Features Area -->
+<div class="features-area section-pt">
+    <div class="container">
+        <div class="row">
+                <div class="sidebar-wrapper-2">
+                    <div class="pricing-widget p-4 custom-border">
+                        <div class="widget-body pt-3">
+                            <div class="pricing-form">
+                                <form action="#">
+                                    <div *ngFor="let meal of cartMeal" class="single-pricing d-flex justify-content-between">
+                                        <div class="title">
+                                            <p><i class="far fa-stop-circle"></i> {{meal.nameMeal}}</p>
+                                        </div>
+                                        <div class="pricing-info">
+                                            <p class="price">${{meal.priceMeal}}</p>
+                                            <a href="javascript:void(0)" (click)="deleteItem(meal._id)" class="delete-btn"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </div>
+                                    <div *ngFor="let drink of cartDrink" class="single-pricing d-flex justify-content-between">
+                                        <div class="title">
+                                            <p><i class="far fa-stop-circle"></i> {{drink.nameDrink}}</p>
+                                        </div>
+                                        <div class="pricing-info">
+                                            <p class="price">${{drink.priceDrink}}</p>
+                                            <a href="javascript:void(0)" (click)="deleteItemDrink(drink._id)" class="delete-btn"><i class="far fa-trash-alt"></i></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="pay-form mt-4">
+                                <form action="#">
+                                    <div class="pay-list">
+                                        <ul>
+                                            <li><span>Item Total</span> <span>${{totalPrice | number : '.2-2'}}</span></li>
+                                        </ul>
+                                    </div>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>SELECT THE TABLE</option>
+                                        <option value="1">01</option>
+                                        <option value="2">02</option>
+                                        <option value="3">03</option>
+                                        <option value="4">04</option>
+                                        <option value="5">05</option>
+                                        <option value="6">06</option>
+                                      </select>
+                                    <button type="submit" class="btn-default w-100 mt-5">Pay ${{totalPrice | number : '.2-2'}}</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- End Features Area -->
+
+<!-- Start Footer -->
+<footer class="footer-wrapper">
+    <div class="footer-bottom bg-black-2 py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright-text text-center">
+                        <p>Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
