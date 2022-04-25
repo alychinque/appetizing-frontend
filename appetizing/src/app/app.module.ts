@@ -17,6 +17,7 @@ import { DashboardAddAdminComponent } from './dashboard-add-admin/dashboard-add-
 import { DashboardMealComponent } from './dashboard-meal/dashboard-meal.component';
 import { DashboardAddMealComponent } from './dashboard-add-meal/dashboard-add-meal.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,25 @@ const routes: Routes = [
     HomeComponent,
     FoodComponent,
     RecoveryPasswordComponent,
-    CheckoutComponent
+    DashboardAddAdminComponent,
+    DashboardAddDrinkComponent,
+    DashboardAddItemComponent,
+    DashboardAddMealComponent,
+    DashboardAddOrderComponent,
+    DashboardAdminComponent,
+    DashboardDrinksComponent,
+    DashboardHomeComponent,
+    DashboardItemsComponent,
+    DashboardLoginComponent,
+    DashboardMealComponent,
+    DashboardOrderComponent,
+    DashboardUpdateAdminComponent,
+    DashboardUpdateDrinkComponent,
+    DashboardUpdateItemComponent,
+    DashboardUpdateMealComponent,
+    DashboardUpdateOrderComponent, 
+    DashboardUserComponent
+    
   ],
   imports: [
     BrowserModule,

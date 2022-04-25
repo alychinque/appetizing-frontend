@@ -82,27 +82,27 @@
             <tr>
                 <td>Full Name: </td>
                 <td>
-                    <input type="text" name="full_name" placeholder="Enter Your Name">
+                    <input formControlName="fullName" type="text" id="admin_name"  class="form-control" placeholder="Enter Your Name" required>
                 </td>
             </tr>
 
             <tr>
                 <td>Username: </td>
                 <td>
-                    <input type="text" name="username" placeholder="Your Username">
+                    <input formControlName="username" type="text" id="user-name"  class="form-control" placeholder="Enter user-Name" required>
                 </td>
             </tr>
 
             <tr>
                 <td>Password: </td>
                 <td>
-                    <input type="password" name="password" placeholder="Your Password">
+                    <input type="password" id="admin-password" formControlName="password" minlength="6" maxlength="60" class="form-control" placeholder="Your Password" required>
                 </td>
             </tr>
 
             <tr>
                 <td colspan="2">
-                    <input type="submit" name="submit" value="Add Admin" class="btn-secondary">
+                    <input type="submit" name="submit" (click)="registerAdmin()" value="Add Admin" class="btn-secondary">
                     <a href="javascript:void(0)" (click)="dashboardAdmin()" class="btn-primary">Return</a>
                 </td>
             </tr>
@@ -113,7 +113,7 @@
     <footer>
         <div class="footer">
             <div class="wrapper">
-                <p class="text-center">Appetizing application - Rael Guimaraes</p>
+                <p class="text-center">Copyright © 2022 <a href="#">Appetizing</a>. All rights reserved.</p>
             </div>
         </div>
     </footer>
