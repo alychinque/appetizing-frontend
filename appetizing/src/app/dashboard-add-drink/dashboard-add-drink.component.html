@@ -82,40 +82,40 @@
             <tr>
                 <td>Name: </td>
                 <td>
-                    <input type="text" name="name" placeholder="Enter Drink Name">
+                    <input formControlName="name" type="text" id="drink_name" class="form-control" placeholder="Enter Drink Name" required>
                 </td>
             </tr>
 
             <tr>
                 <td>Price: </td>
                 <td>
-                    <input type="number" name="price" placeholder="Enter Drink Price">
+                    <input formControlName="price" type="number" id="drink_price" class="form-control" placeholder="Enter Drink Price"required>
                 </td>
             </tr>
 
             <tr>
                 <td>Category: </td>
                 <td>
-                    <input type="radio" name="category" value="beer"> beer 
-                    <input type="radio" name="category" value="wine"> wine
-                    <input type="radio" name="category" value="cocktail"> cocktail 
-                    <input type="radio" name="category" value="soft drink"> soft drink 
-                    <input type="radio" name="category" value="gin"> gin
-                    <input type="radio" name="category" value="vodka"> vodka
+                    <input formControlName="category" type="radio" id="drink_category"  value="beer"> beer 
+                    <input formControlName="category" type="radio" id="drink_category"  value="wine"> wine
+                    <input formControlName="category" type="radio" id="drink_category"  value="cocktail"> cocktail 
+                    <input formControlName="category" type="radio" id="drink_category"  value="soft drink"> soft drink 
+                    <input formControlName="category" type="radio" id="drink_category"  value="gin"> gin
+                    <input formControlName="category" type="radio" id="drink_category"  value="vodka"> vodka
                 </td>
             </tr>
 
             <tr>
                 <td>Status: </td>
                 <td>
-                    <input type="radio" name="active" value="Yes"> Yes 
-                    <input type="radio" name="active" value="No"> No 
+                    <input formControlName="status" type="radio" id="active"  value="Yes"> Yes 
+                    <input formControlName="status" type="radio" id="active"  value="No"> No 
                 </td>
             </tr>
 
             <tr>
                 <td colspan="2">
-                    <input type="submit" name="submit" value="Add Drink" class="btn-secondary">
+                    <input type="submit" name="submit" (click)="addDrink()" value="Add Drink" class="btn-secondary">
                     <a href="javascript:void(0)" (click)="dashboardDrinks()" class="btn-primary">Return</a>
                 </td>
             </tr>
@@ -126,7 +126,7 @@
     <footer>
         <div class="footer">
             <div class="wrapper">
-                <p class="text-center">Appetizing application - Rael Guimaraes</p>
+                <p class="text-center">Copyright © 2022 <a href="#">Appetizing</a>. All rights reserved.</p>
             </div>
         </div>
     </footer>
