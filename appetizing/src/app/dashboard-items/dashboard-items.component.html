@@ -136,21 +136,23 @@
             <th>Status</th>
             <th>Actions</th>
         </tr>
-        <tr>
-            <td>Category 1</td>
-            <td>price 1</td>
-            <td>Status 1</td>
-            <td>
-                <a href="javascript:void(0)" (click)="updateItem()" class="btn-secondary">Update Item</a>
-                <a href="" class="btn-danger">Delete Item</a>
-            </td>
-        </tr>
+        <div *ngFor="let item">
+            <tr>
+                <td>{{item.nameItem}}</td>
+                <td>{{item.priceItem}}</td>
+                <td>{{item}}</td>
+                <td>
+                    <a href="javascript:void(0)" (click)="updateItem()" class="btn-secondary">Update Item</a>
+                    <a href="" class="btn-danger">Delete Item</a>
+                </td>
+            </tr>
+        </div>
     </table>
 
     <footer>
         <div class="footer">
             <div class="wrapper">
-                <p class="text-center">Appetizing application - Rael Guimaraes</p>
+                <p class="text-center">Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights reserved.</p>
             </div>
         </div>
     </footer>

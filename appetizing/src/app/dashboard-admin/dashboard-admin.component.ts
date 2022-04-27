@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { DashboardAddAdminComponent } from '../dashboard-add-admin/dashboard-add-admin.component';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { map, first } from 'rxjs/operators';
+import { Admin } from '../interface/admin';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -9,10 +11,39 @@ import { DashboardAddAdminComponent } from '../dashboard-add-admin/dashboard-add
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor(private router: Router) {
+  admin: Admin[] = [];
+  adminCopy: Admin[] = [];
+
+  constructor(private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
+    this.getAdmin();
+  }
+
+  httpGet(url: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+      }),
+    };
+
+    return this.http.get<any>(url, httpOptions).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getAdmin() {
+    this.httpGet("https://appetizing.herokuapp.com/drink")
+      .subscribe(
+        data => {
+          this.admin = data;
+          this.adminCopy = data;
+        },
+        error => {
+          alert(JSON.stringify(error));
+        });
   }
 
   dashboardHome(){

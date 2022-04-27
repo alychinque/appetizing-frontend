@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { map, first } from 'rxjs/operators';
+import { Item } from '../interface/item';
 
 @Component({
   selector: 'app-dashboard-items',
@@ -8,10 +11,39 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 })
 export class DashboardItemsComponent implements OnInit {
 
-  constructor(private router: Router) {
+  item: Item[] = [];
+  itemCopy: Item[] = [];
+
+  constructor(private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
+    this.getItems();
+  }
+
+  httpGet(url: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+      }),
+    };
+
+    return this.http.get<any>(url, httpOptions).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getItems() {
+    this.httpGet("https://appetizing.herokuapp.com/drink")
+      .subscribe(
+        data => {
+          this.item = data;
+          this.itemCopy = data;
+        },
+        error => {
+          alert(JSON.stringify(error));
+        });
   }
 
   dashboardHome(){

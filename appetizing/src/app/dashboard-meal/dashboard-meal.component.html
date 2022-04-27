@@ -18,6 +18,7 @@
             width: 40%;
             width: 300px;
         }
+
         h1 {
             text-align: center;
             margin-top: 70px;
@@ -26,8 +27,8 @@
         .menu {
             border-bottom: 1px solid grey;
             text-align: center;
-            margin-top: 0px;  
-            margin-bottom: 30px;    
+            margin-top: 0px;
+            margin-bottom: 30px;
         }
 
         .menu ul {
@@ -52,52 +53,57 @@
 
             color: #ffc15e;
         }
-        .footer{
 
-    background-color: #ff4757;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 70px;
-}
-.table{
-    width: 50%;
-    margin-top: 40px;
-    margin-left: auto;
-    margin-right: auto;
-}
-table tr th{
-    border-bottom: 1px solid black;
-    padding: 1.5%;
-    text-align: left;
-}
+        .footer {
 
-table tr td{
-    padding: 1.5%;
-}
-.btn-primary{
-    background-color: #1e90ff;
-    padding: 1%;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 30px;
-}
-.btn-secondary{
-    background-color: #7bed9f;
-    padding: 1%;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-}
-.btn-danger{
-    background-color: #ff6b81;
-    padding: 1%;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
+            background-color: #ff4757;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 70px;
+        }
 
+        .table {
+            width: 50%;
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table tr th {
+            border-bottom: 1px solid black;
+            padding: 1.5%;
+            text-align: left;
+        }
+
+        table tr td {
+            padding: 1.5%;
+        }
+
+        .btn-primary {
+            background-color: #1e90ff;
+            padding: 1%;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        .btn-secondary {
+            background-color: #7bed9f;
+            padding: 1%;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-danger {
+            background-color: #ff6b81;
+            padding: 1%;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -134,24 +140,26 @@ table tr td{
             <th>Status</th>
             <th>Actions</th>
         </tr>
-        <tr>
-            <td>Food 1</td>
-            <td>Price 1</td>
-            <td>Item</td>
-            <td>Allergies 1</td>
-            <td>Extra 1</td>
-            <td>is active</td>
-            <td>
-                <a href="javascript:void(0)" (click)="updateMeal()" class="btn-secondary">Update Meal</a>
-                <a href="" class="btn-danger">Delete Meal</a>
-            </td>
-        </tr>
+        <div *ngFor="let meal">
+            <tr>
+                <td>{{meal.nameMeal}}</td>
+                <td>{{meal.priceMeal}}</td>
+                <td>{{meal.item}}</td>
+                <td>{{meal}}</td>
+                <td>{{meal.extras}}</td>
+                <td>{{meal}}</td>
+                <td>
+                    <a href="javascript:void(0)" (click)="updateMeal()" class="btn-secondary">Update Meal</a>
+                    <a href="" class="btn-danger">Delete Meal</a>
+                </td>
+            </tr>
+        </div>
     </table>
 
     <footer>
         <div class="footer">
             <div class="wrapper">
-                <p class="text-center">Appetizing application - Rael Guimaraes</p>
+                <p class="text-center">Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights reserved.</p>
             </div>
         </div>
     </footer>

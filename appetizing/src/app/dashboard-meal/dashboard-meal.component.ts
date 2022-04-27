@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { map, first } from 'rxjs/operators';
+import { Meal } from '../interface/meal';
 
 @Component({
   selector: 'app-dashboard-meal',
@@ -8,10 +11,39 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 })
 export class DashboardMealComponent implements OnInit {
 
-  constructor(private router: Router) {
+  meal: Meal[] = [];
+  mealCopy: Meal[] = [];
+
+  constructor(private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
+    this.getMeal();
+  }
+
+  httpGet(url: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+      }),
+    };
+
+    return this.http.get<any>(url, httpOptions).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getMeal() {
+    this.httpGet("https://appetizing.herokuapp.com/meal")
+      .subscribe(
+        data => {
+          this.meal = data;
+          this.mealCopy = data;
+        },
+        error => {
+          alert(JSON.stringify(error));
+        });
   }
 
   dashboardHome(){
