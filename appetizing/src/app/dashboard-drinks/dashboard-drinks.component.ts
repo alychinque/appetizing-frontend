@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { map, first } from 'rxjs/operators';
+import { Drink } from '../interface/drink';
+
 
 @Component({
   selector: 'app-dashboard-drinks',
@@ -8,10 +12,39 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 })
 export class DashboardDrinksComponent implements OnInit {
 
-  constructor(private router: Router) {
+  drink: Drink[] = [];
+  drinkCopy: Drink[] = [];
+
+  constructor(private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
+    this.getDrink();
+  }
+
+  httpGet(url: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+      }),
+    };
+
+    return this.http.get<any>(url, httpOptions).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getDrink() {
+    this.httpGet("https://appetizing.herokuapp.com/drink")
+      .subscribe(
+        data => {
+          this.drink = data;
+          this.drinkCopy = data;
+        },
+        error => {
+          alert(JSON.stringify(error));
+        });
   }
 
   dashboardHome(){
