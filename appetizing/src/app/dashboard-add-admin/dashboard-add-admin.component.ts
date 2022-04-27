@@ -11,7 +11,7 @@ import { first, map } from 'rxjs/operators';
 })
 export class DashboardAddAdminComponent implements OnInit {
 
-  loginForm: any;
+  addAdminForm: any;
   clicked = false;
   errorSign = false;
 
@@ -20,7 +20,7 @@ export class DashboardAddAdminComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.loginForm = new FormGroup({
+    this.addAdminForm = new FormGroup({
       fullName: new FormControl(undefined, [Validators.required]),
       username: new FormControl(undefined, [Validators.required]),
       password: new FormControl([undefined, [Validators.required, Validators.minLength(6), Validators.minLength(60)]])
@@ -42,14 +42,14 @@ export class DashboardAddAdminComponent implements OnInit {
   }
 
   registerAdmin() {
-    if (this.loginForm.valid) {
+    if (this.addAdminForm.valid) {
 
       this.clicked = true;
 
       let data = {
-        fullName: this.loginForm.controls['fullName'].value,
-        username: this.loginForm.controls['username'].value,
-        password: this.loginForm.controls['password'].value
+        fullName: this.addAdminForm.controls['fullName'].value,
+        username: this.addAdminForm.controls['username'].value,
+        password: this.addAdminForm.controls['password'].value
       };
 
       alert('next alert will be showing the json struct');

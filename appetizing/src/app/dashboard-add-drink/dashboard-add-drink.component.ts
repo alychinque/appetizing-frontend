@@ -11,7 +11,7 @@ import { first, map } from 'rxjs/operators';
 })
 export class DashboardAddDrinkComponent implements OnInit {
 
-  loginForm: any;
+  addDrinkForm: any;
   clicked = false;
   errorSign = false;
 
@@ -20,7 +20,7 @@ export class DashboardAddDrinkComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.loginForm = new FormGroup({
+    this.addDrinkForm = new FormGroup({
       name: new FormControl(undefined, [Validators.required]),
       price: new FormControl(undefined, [Validators.required]),
       category: new FormControl([undefined]),
@@ -43,15 +43,15 @@ export class DashboardAddDrinkComponent implements OnInit {
   }
 
   addDrink() {
-    if (this.loginForm.valid) {
+    if (this.addDrinkForm.valid) {
 
       this.clicked = true;
 
       let data = {
-        name: this.loginForm.controls['name'].value,
-        price: this.loginForm.controls['price'].value,
-        category: this.loginForm.controls['category'].value,
-        status: this.loginForm.controls['status'].value
+        name: this.addDrinkForm.controls['name'].value,
+        price: this.addDrinkForm.controls['price'].value,
+        category: this.addDrinkForm.controls['category'].value,
+        status: this.addDrinkForm.controls['status'].value
       };
 
       alert('next alert will be showing the json struct');

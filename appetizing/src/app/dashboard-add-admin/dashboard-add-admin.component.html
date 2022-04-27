@@ -76,13 +76,14 @@
     <h1>Add Admin</h1>
 
 
-    <form action="" method="POST">
+    <form #f="ngForm" [formGroup]="addAdminForm">
 
         <table class="table">
             <tr>
                 <td>Full Name: </td>
                 <td>
                     <input formControlName="fullName" type="text" id="admin_name"  class="form-control" placeholder="Enter Your Name" required>
+                    
                 </td>
             </tr>
 

@@ -76,34 +76,36 @@
     <h1>Add Item</h1>
 
 
-    <form action="" method="POST">
+    <form #f="ngForm" [formGroup]="addItemForm">
 
         <table class="table">
             <tr>
                 <td>Name: </td>
                 <td>
-                    <input type="text" name="name" placeholder="Enter Item Name">
+                    <input formControlName="name" type="text" id="item_name" class="form-control"
+                        placeholder="Enter Item Name" required>
                 </td>
             </tr>
 
             <tr>
                 <td>Price: </td>
                 <td>
-                    <input type="number" name="price" placeholder="Enter Item Price">
+                    <input formControlName="price" type="number" id="item_price" class="form-control"
+                        placeholder="Enter Item Price" required>
                 </td>
             </tr>
 
             <tr>
                 <td>Status: </td>
                 <td>
-                    <input type="radio" name="active" value="Yes"> Yes 
-                    <input type="radio" name="active" value="No"> No 
+                    <input formControlName="status" type="radio" id="active" value="Yes"> Yes
+                    <input formControlName="status" type="radio" id="active" value="No"> No
                 </td>
             </tr>
 
             <tr>
                 <td colspan="2">
-                    <input type="submit" name="submit" value="Add Item" class="btn-secondary">
+                    <input type="submit" name="submit" (click)="addItem()"value="Add Item" class="btn-secondary">
                     <a href="javascript:void(0)" (click)="dashboardItems()" class="btn-primary">Return</a>
                 </td>
             </tr>
@@ -114,7 +116,7 @@
     <footer>
         <div class="footer">
             <div class="wrapper">
-                <p class="text-center">Appetizing application - Rael Guimaraes</p>
+                <p class="text-center">Copyright © 2022 <a href="#">Appetizing</a>. All rights reserved.</p>
             </div>
         </div>
     </footer>

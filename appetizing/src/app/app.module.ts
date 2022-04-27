@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { FoodComponent } from './food/food.component';
 import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+//import { CheckoutComponent } from './checkout/checkout.component';
 import { DashboardAddAdminComponent } from './dashboard-add-admin/dashboard-add-admin.component';
 import { DashboardAddDrinkComponent } from './dashboard-add-drink/dashboard-add-drink.component';
 import { DashboardAddItemComponent } from './dashboard-add-item/dashboard-add-item.component';
@@ -43,7 +43,7 @@ const routes: Routes = [
   {path: 'recovery' , component: RecoveryPasswordComponent},
   {path: 'food' , component: FoodComponent},
   {path: 'food/:id' , component: FoodComponent},
-  {path: 'checkout' , component: CheckoutComponent},
+ // {path: 'checkout' , component: CheckoutComponent},
   {path: 'dashboard-add-admin' , component: DashboardAddAdminComponent},
   {path: 'dashboard-add-drink' , component: DashboardAddDrinkComponent},
   {path: 'dashboard-add-item' , component: DashboardAddItemComponent},
