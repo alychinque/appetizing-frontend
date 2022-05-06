@@ -76,17 +76,16 @@ export class SignupComponent implements OnInit {
         phone: phoneArray.e164Number
        };
 
-      alert('next alert will be showing the json struct');
-      alert(JSON.stringify(data));
-
-      this.httpPost("https://backend/", data).pipe(first())
+      this.httpPost("http://localhost:9000/user/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;
+            this.router.navigate(['login']);
           },
           error => {
             this.errorSign = true;
             this.clicked = false;
+            alert('User already exists!');
           });
     }
     else {

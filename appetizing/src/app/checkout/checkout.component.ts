@@ -5,7 +5,6 @@ import { map, first } from 'rxjs/operators';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { ItemsService } from '../service/items.service';
 import { Meal, Items, Extras } from '../interface/meal';
-import { CompileTypeMetadata } from '@angular/compiler';
 import { Drink } from '../interface/drink';
 
 @Component({
@@ -14,6 +13,7 @@ import { Drink } from '../interface/drink';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+
   cartMeal: Meal[] = [];
   cartDrink: Drink[] = [];
   optMeal: Meal[] = [];
@@ -21,7 +21,6 @@ export class CheckoutComponent implements OnInit {
 
   totalQuantity: number = 0;
   totalPrice: number = 0;
-
 
   checkoutForm: any;
 
@@ -31,6 +30,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.checkoutForm = new FormGroup({
+      table: new FormControl(undefined, [Validators.required])
+    });
+
     if(localStorage.getItem('cart') != null){
       var getObj = JSON.parse(JSON.stringify(JSON.parse(localStorage.getItem('cart') || '{}')));
       this.cartMeal = getObj;
@@ -92,5 +96,46 @@ export class CheckoutComponent implements OnInit {
       });
     }
   }
+
+  httpPost(url: string, request: any) {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         })};
+
+    return this.http.post<any>(url, request, httpOptions).pipe(map((data) => {
+      return data;
+    }));
+  }
+
+  pay()
+  {
+
+    if (this.checkoutForm.valid) {
+  
+    let data = { 
+      meal: this.cartMeal,
+      drink: this.cartDrink,
+      priceTotal: this.totalPrice,
+      table: this.checkoutForm.controls['table'].value,
+      idUser: "GUEST"
+     }
+
+     this.httpPost("http://localhost:9000/order/", data).pipe(first())
+     .subscribe(
+       data => {
+        alert('')
+       },
+       error => {
+           alert(JSON.stringify(error))
+       });
+
+  }
+  else{
+    alert('SELECT A TABLE FIRST!')
+  }
+}
 
 }

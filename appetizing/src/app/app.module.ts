@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { FoodComponent } from './food/food.component';
 import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
-//import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { DashboardAddAdminComponent } from './dashboard-add-admin/dashboard-add-admin.component';
 import { DashboardAddDrinkComponent } from './dashboard-add-drink/dashboard-add-drink.component';
 import { DashboardAddItemComponent } from './dashboard-add-item/dashboard-add-item.component';
@@ -32,6 +32,7 @@ import { DashboardUpdateItemComponent } from './dashboard-update-item/dashboard-
 import { DashboardUpdateMealComponent } from './dashboard-update-meal/dashboard-update-meal.component';
 import { DashboardUpdateOrderComponent } from './dashboard-update-order/dashboard-update-order.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
+import { OrderstatusComponent } from './orderstatus/orderstatus.component';
 
 
 
@@ -43,7 +44,7 @@ const routes: Routes = [
   {path: 'recovery' , component: RecoveryPasswordComponent},
   {path: 'food' , component: FoodComponent},
   {path: 'food/:id' , component: FoodComponent},
- // {path: 'checkout' , component: CheckoutComponent},
+  {path: 'checkout' , component: CheckoutComponent},
   {path: 'dashboard-add-admin' , component: DashboardAddAdminComponent},
   {path: 'dashboard-add-drink' , component: DashboardAddDrinkComponent},
   {path: 'dashboard-add-item' , component: DashboardAddItemComponent},
@@ -71,6 +72,7 @@ const routes: Routes = [
     SignupComponent,
     HomeComponent,
     FoodComponent,
+    CheckoutComponent,
     RecoveryPasswordComponent,
     DashboardAddAdminComponent,
     DashboardAddDrinkComponent,
@@ -89,7 +91,7 @@ const routes: Routes = [
     DashboardUpdateItemComponent,
     DashboardUpdateMealComponent,
     DashboardUpdateOrderComponent, 
-    DashboardUserComponent
+    DashboardUserComponent, OrderstatusComponent
     
   ],
   imports: [
