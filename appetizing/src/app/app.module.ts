@@ -33,6 +33,7 @@ import { DashboardUpdateMealComponent } from './dashboard-update-meal/dashboard-
 import { DashboardUpdateOrderComponent } from './dashboard-update-order/dashboard-update-order.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { OrderstatusComponent } from './orderstatus/orderstatus.component';
+import { TableComponent } from './table/table.component';
 
 
 
@@ -44,7 +45,9 @@ const routes: Routes = [
   {path: 'recovery' , component: RecoveryPasswordComponent},
   {path: 'food' , component: FoodComponent},
   {path: 'food/:id' , component: FoodComponent},
+  {path: 'table/:id' , component: TableComponent},
   {path: 'checkout' , component: CheckoutComponent},
+  {path: 'orderstatus' , component: OrderstatusComponent},
   {path: 'dashboard-add-admin' , component: DashboardAddAdminComponent},
   {path: 'dashboard-add-drink' , component: DashboardAddDrinkComponent},
   {path: 'dashboard-add-item' , component: DashboardAddItemComponent},
@@ -91,7 +94,9 @@ const routes: Routes = [
     DashboardUpdateItemComponent,
     DashboardUpdateMealComponent,
     DashboardUpdateOrderComponent, 
-    DashboardUserComponent, OrderstatusComponent
+    DashboardUserComponent, 
+    OrderstatusComponent, 
+    TableComponent
     
   ],
   imports: [

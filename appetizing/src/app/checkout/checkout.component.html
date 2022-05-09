@@ -49,12 +49,6 @@
                         <div class="page-header-container">
                             <div class="page-header-content">
                                 <h1 class="heading-one">Checkout</h1>
-                                <div class="page-nav">
-                                    <ul>
-                                        <li><a href="#">Home ></a></li>
-                                        <li>Checkout</li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -100,8 +94,12 @@
                                             <li><span>Item Total</span> <span>${{totalPrice}}</span></li>
                                         </ul>
                                     </div>
-                                    
-                                    <select formControlName="table" class="form-select" aria-label="Default select example">
+                                    <div  *ngIf="table != -1" class="pay-list">
+                                        <ul>
+                                            <li><span>Table Selected</span> <span>{{table}}</span></li>
+                                        </ul>
+                                    </div>
+                                    <select *ngIf="table == -1"  formControlName="table" class="form-select" aria-label="Default select example">
                                         <option selected>SELECT THE TABLE</option>
                                         <option value="1">01</option>
                                         <option value="2">02</option>
@@ -109,6 +107,10 @@
                                         <option value="4">04</option>
                                         <option value="5">05</option>
                                         <option value="6">06</option>
+                                        <option value="7">07</option>
+                                        <option value="8">08</option>
+                                        <option value="9">09</option>
+                                        <option value="10">10</option>
                                       </select>
                                     <button type="submit" (click)="pay()" class="btn-default w-100 mt-5">Pay ${{totalPrice}}</button>
                                 </form>

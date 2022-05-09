@@ -24,6 +24,8 @@ export class CheckoutComponent implements OnInit {
 
   checkoutForm: any;
 
+  table: any = -1;
+
 
   constructor(private router: Router, private http: HttpClient, private itemsService: ItemsService) {
 
@@ -34,6 +36,13 @@ export class CheckoutComponent implements OnInit {
     this.checkoutForm = new FormGroup({
       table: new FormControl(undefined, [Validators.required])
     });
+
+    if (localStorage.getItem('table') != null) {
+
+      this.checkoutForm.controls['table'].value = localStorage.getItem('table');
+      this.table = this.checkoutForm.controls['table'].value;
+
+    }
 
     if(localStorage.getItem('cart') != null){
       var getObj = JSON.parse(JSON.stringify(JSON.parse(localStorage.getItem('cart') || '{}')));
@@ -126,7 +135,9 @@ export class CheckoutComponent implements OnInit {
      this.httpPost("http://localhost:9000/order/", data).pipe(first())
      .subscribe(
        data => {
-        alert('')
+        localStorage.removeItem('cart')
+        localStorage.removeItem('cart-drink')
+        this.router.navigate(['orderstatus']);
        },
        error => {
            alert(JSON.stringify(error))
