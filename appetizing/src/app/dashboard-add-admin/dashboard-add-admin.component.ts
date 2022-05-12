@@ -55,7 +55,7 @@ export class DashboardAddAdminComponent implements OnInit {
       alert('next alert will be showing the json struct');
       alert(JSON.stringify(data));
 
-      this.httpPost("https://backend/", data).pipe(first())
+      this.httpPost("http://localhost:9000/admin/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;

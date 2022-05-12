@@ -1,0 +1,35 @@
+body{
+    background-color: #e5e5e5;
+  }
+  .logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    width: 300px;
+  } 
+  .links__item {
+    display: block;
+    max-width: 550px;
+    margin: 0 auto 15px;
+    margin-bottom: 5px;
+    padding: 15px 20px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    color: black;
+  }
+  .links__item .links__item--product {
+    font-size: large;
+    text-align: center;
+    border-bottom: 3px solid #ffc15e;
+    box-shadow: inset 0 -4px 0 #ffc15e;
+    border-radius: 25px;
+    border: 2px solid #ffc15e;
+    background-color: #ffc15e;
+  }
+  .footer{
+    margin-top: 100px;
+    text-align: center;
+  }

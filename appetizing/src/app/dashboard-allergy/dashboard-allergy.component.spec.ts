@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardLoginComponent } from './dashboard-login.component';
+import { DashboardAllergyComponent } from './dashboard-allergy.component';
 
-describe('DashboardLoginComponent', () => {
-  let component: DashboardLoginComponent;
-  let fixture: ComponentFixture<DashboardLoginComponent>;
+describe('DashboardAllergyComponent', () => {
+  let component: DashboardAllergyComponent;
+  let fixture: ComponentFixture<DashboardAllergyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardLoginComponent ]
+      declarations: [ DashboardAllergyComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardLoginComponent);
+    fixture = TestBed.createComponent(DashboardAllergyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,4 +23,3 @@ describe('DashboardLoginComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-

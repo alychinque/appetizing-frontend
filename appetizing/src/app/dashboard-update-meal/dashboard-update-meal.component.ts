@@ -14,6 +14,7 @@ export class DashboardUpdateMealComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   dashboardMeal(){
     this.router.navigate(['dashboard-meal']);
 

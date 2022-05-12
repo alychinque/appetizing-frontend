@@ -24,6 +24,11 @@ export class DashboardHomeComponent implements OnInit {
 
   }
 
+  dashboardAllergy(){
+    this.router.navigate(['dashboard-allergy']);
+
+  }
+
   dashboardDrinks(){
     this.router.navigate(['dashboard-drinks']);
 

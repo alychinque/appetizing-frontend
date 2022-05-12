@@ -55,6 +55,12 @@ export class DashboardMealComponent implements OnInit {
     this.router.navigate(['dashboard-admin']);
 
   }
+
+  dashboardAllergy(){
+    this.router.navigate(['dashboard-allergy']);
+
+  }
+  
   dashboardDrinks(){
     this.router.navigate(['dashboard-drinks']);
 

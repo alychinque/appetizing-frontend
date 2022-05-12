@@ -5,13 +5,13 @@ import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl, Valid
 import { first, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-dashboard-add-drink',
-  templateUrl: './dashboard-add-drink.component.html',
-  styleUrls: ['./dashboard-add-drink.component.css']
+  selector: 'app-dashboard-add-allergy',
+  templateUrl: './dashboard-add-allergy.component.html',
+  styleUrls: ['./dashboard-add-allergy.component.css']
 })
-export class DashboardAddDrinkComponent implements OnInit {
+export class DashboardAddAllergyComponent implements OnInit {
 
-  addDrinkForm: any;
+  addAllergyForm: any;
   clicked = false;
   errorSign = false;
 
@@ -20,11 +20,9 @@ export class DashboardAddDrinkComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.addDrinkForm = new FormGroup({
-      name: new FormControl(undefined, [Validators.required]),
-      price: new FormControl(undefined, [Validators.required]),
-      category: new FormControl([undefined]),
-      status: new FormControl([undefined])
+    this.addAllergyForm = new FormGroup({
+      allergyName: new FormControl(undefined, [Validators.required]),
+      allergyNumber: new FormControl(undefined, [Validators.required]),
     })
   }
 
@@ -42,26 +40,23 @@ export class DashboardAddDrinkComponent implements OnInit {
     }));
   }
 
-  addDrink() {
-    if (this.addDrinkForm.valid) {
+  addAllergy() {
+    if (this.addAllergyForm.valid) {
 
       this.clicked = true;
 
       let data = {
-        name: this.addDrinkForm.controls['name'].value,
-        price: this.addDrinkForm.controls['price'].value,
-        category: this.addDrinkForm.controls['category'].value,
-        status: this.addDrinkForm.controls['status'].value
+        allergyName: this.addAllergyForm.controls['allergyName'].value,
+        allergyNumber: this.addAllergyForm.controls['allergyNumber'].value,
       };
 
       alert('next alert will be showing the json struct');
       alert(JSON.stringify(data));
 
-      this.httpPost("http://localhost:9000/drink", data).pipe(first())
+      this.httpPost("http://localhost:9000/allergy/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;
-            alert('drink added');
           },
           error => {
             this.errorSign = true;
@@ -73,9 +68,9 @@ export class DashboardAddDrinkComponent implements OnInit {
     }
   }
 
-  dashboardDrinks() {
-    this.router.navigate(['dashboard-drinks']);
+
+  dashboardAllergy() {
+    this.router.navigate(['dashboard-allergy']);
 
   }
-
 }

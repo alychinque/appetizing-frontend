@@ -2,23 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, first } from 'rxjs/operators';
-import { Order } from '../interface/order';
+import { Allergy } from '../interface/allergy';
 
 @Component({
-  selector: 'app-dashboard-order',
-  templateUrl: './dashboard-order.component.html',
-  styleUrls: ['./dashboard-order.component.css']
+  selector: 'app-dashboard-allergy',
+  templateUrl: './dashboard-allergy.component.html',
+  styleUrls: ['./dashboard-allergy.component.css']
 })
-export class DashboardOrderComponent implements OnInit {
+export class DashboardAllergyComponent implements OnInit {
 
-  order: Order[] = [];
-  orderCopy: Order[] = [];
+  allergy: Allergy[] = [];
+  allergyCopy: Allergy[] = [];
 
-   constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
-    this.getOrder();
+    this.getAllergy();
   }
 
   httpGet(url: string) {
@@ -34,12 +34,12 @@ export class DashboardOrderComponent implements OnInit {
     }));
   }
 
-  getOrder() {
-    this.httpGet("https://appetizing.herokuapp.com/order")
+  getAllergy() {
+    this.httpGet("https://appetizing.herokuapp.com/allergy")
       .subscribe(
         data => {
-          this.order = data;
-          this.orderCopy = data;
+          this.allergy = data;
+          this.allergyCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
@@ -53,11 +53,6 @@ export class DashboardOrderComponent implements OnInit {
 
   dashboardAdmin(){
     this.router.navigate(['dashboard-admin']);
-
-  }
-
-  dashboardAllergy(){
-    this.router.navigate(['dashboard-allergy']);
 
   }
 
@@ -76,17 +71,22 @@ export class DashboardOrderComponent implements OnInit {
 
   }
 
+  dashboardOrder(){
+    this.router.navigate(['dashboard-order']);
+
+  }
+
   dashboardUser(){
     this.router.navigate(['dashboard-user']);
 
   }
 
-  addOrder(){
-    this.router.navigate(['dashboard-add-order']);
+  addAllergy(){
+    this.router.navigate(['dashboard-add-allergy']);
   }
 
-  updateOrder(){
-    this.router.navigate(['dashboard-update-order']);
+  updateAllergy(){
+    this.router.navigate(['dashboard-update-allergy']);
   }
 
 }

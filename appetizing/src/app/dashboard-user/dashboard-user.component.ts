@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { map, first } from 'rxjs/operators';
+
+import { User } from '../interface/user';
 
 @Component({
   selector: 'app-dashboard-user',
@@ -8,10 +12,39 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 })
 export class DashboardUserComponent implements OnInit {
 
-  constructor(private router: Router) {
+  user: User[] = [];
+  userCopy: User[] = [];
+
+   constructor(private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
+    this.getUser();
+  }
+
+  httpGet(url: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+      }),
+    };
+
+    return this.http.get<any>(url, httpOptions).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getUser() {
+    this.httpGet("https://appetizing.herokuapp.com/user")
+      .subscribe(
+        data => {
+          this.user = data;
+          this.userCopy = data;
+        },
+        error => {
+          alert(JSON.stringify(error));
+        });
   }
 
   dashboardHome(){
@@ -21,6 +54,11 @@ export class DashboardUserComponent implements OnInit {
 
   dashboardAdmin(){
     this.router.navigate(['dashboard-admin']);
+
+  }
+
+  dashboardAllergy(){
+    this.router.navigate(['dashboard-allergy']);
 
   }
 

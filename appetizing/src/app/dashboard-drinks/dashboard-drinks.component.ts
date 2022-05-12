@@ -35,6 +35,20 @@ export class DashboardDrinksComponent implements OnInit {
     }));
   }
 
+  httpDelete(url: string, request: any) {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    };
+
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
+
   getDrink() {
     this.httpGet("https://appetizing.herokuapp.com/drink")
       .subscribe(
@@ -47,6 +61,10 @@ export class DashboardDrinksComponent implements OnInit {
         });
   }
 
+  deleteDrink(data: Drink) {
+    this.httpDelete("http://localhost:9000/drink/", data);
+  }
+
   dashboardHome(){
     this.router.navigate(['dashboard-home']);
 
@@ -54,6 +72,11 @@ export class DashboardDrinksComponent implements OnInit {
 
   dashboardAdmin(){
     this.router.navigate(['dashboard-admin']);
+
+  }
+
+  dashboardAllergy(){
+    this.router.navigate(['dashboard-allergy']);
 
   }
 

@@ -23,7 +23,6 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
 import { DashboardDrinksComponent } from './dashboard-drinks/dashboard-drinks.component';
 import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
 import { DashboardItemsComponent } from './dashboard-items/dashboard-items.component';
-import { DashboardLoginComponent } from './dashboard-login/dashboard-login.component';
 import { DashboardMealComponent } from './dashboard-meal/dashboard-meal.component';
 import { DashboardOrderComponent } from './dashboard-order/dashboard-order.component';
 import { DashboardUpdateAdminComponent } from './dashboard-update-admin/dashboard-update-admin.component';
@@ -34,6 +33,9 @@ import { DashboardUpdateOrderComponent } from './dashboard-update-order/dashboar
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { OrderstatusComponent } from './orderstatus/orderstatus.component';
 import { TableComponent } from './table/table.component';
+import { DashboardAddAllergyComponent } from './dashboard-add-allergy/dashboard-add-allergy.component';
+import { DashboardAllergyComponent } from './dashboard-allergy/dashboard-allergy.component';
+import { DashboardUpdateAllergyComponent } from './dashboard-update-allergy/dashboard-update-allergy.component';
 
 
 
@@ -49,23 +51,27 @@ const routes: Routes = [
   {path: 'checkout' , component: CheckoutComponent},
   {path: 'orderstatus' , component: OrderstatusComponent},
   {path: 'dashboard-add-admin' , component: DashboardAddAdminComponent},
+  {path: 'dashboard-add-allergy' , component: DashboardAddAllergyComponent},
   {path: 'dashboard-add-drink' , component: DashboardAddDrinkComponent},
   {path: 'dashboard-add-item' , component: DashboardAddItemComponent},
   {path: 'dashboard-add-meal' , component: DashboardAddMealComponent},
   {path: 'dashboard-add-order' , component: DashboardAddOrderComponent},
   {path: 'dashboard-admin' , component: DashboardAdminComponent},
+  {path: 'dashboard-allergy' , component: DashboardAllergyComponent},
   {path: 'dashboard-drinks' , component: DashboardDrinksComponent},
   {path: 'dashboard-home' , component: DashboardHomeComponent},
   {path: 'dashboard-items' , component: DashboardItemsComponent},
-  {path: 'dashboard-login' , component: DashboardLoginComponent},
   {path: 'dashboard-meal' , component: DashboardMealComponent},
   {path: 'dashboard-order' , component: DashboardOrderComponent},
   {path: 'dashboard-update-admin' , component: DashboardUpdateAdminComponent},
+  {path: 'dashboard-update-allergy' , component: DashboardUpdateAllergyComponent},
   {path: 'dashboard-update-drink' , component: DashboardUpdateDrinkComponent},
   {path: 'dashboard-update-item' , component: DashboardUpdateItemComponent},
   {path: 'dashboard-update-meal' , component: DashboardUpdateMealComponent},
   {path: 'dashboard-update-order' , component: DashboardUpdateOrderComponent},
   {path: 'dashboard-user' , component: DashboardUserComponent}
+  
+
 ];
 
 @NgModule({
@@ -78,25 +84,27 @@ const routes: Routes = [
     CheckoutComponent,
     RecoveryPasswordComponent,
     DashboardAddAdminComponent,
+    DashboardAddAllergyComponent,
     DashboardAddDrinkComponent,
     DashboardAddItemComponent,
     DashboardAddMealComponent,
     DashboardAddOrderComponent,
     DashboardAdminComponent,
+    DashboardAllergyComponent,
     DashboardDrinksComponent,
     DashboardHomeComponent,
     DashboardItemsComponent,
-    DashboardLoginComponent,
     DashboardMealComponent,
     DashboardOrderComponent,
     DashboardUpdateAdminComponent,
+    DashboardUpdateAllergyComponent,
     DashboardUpdateDrinkComponent,
     DashboardUpdateItemComponent,
     DashboardUpdateMealComponent,
     DashboardUpdateOrderComponent, 
     DashboardUserComponent, 
     OrderstatusComponent, 
-    TableComponent
+    TableComponent, DashboardAddAllergyComponent, DashboardAllergyComponent, DashboardUpdateAllergyComponent
     
   ],
   imports: [

@@ -61,7 +61,7 @@ export class DashboardAddMealComponent implements OnInit {
       alert('next alert will be showing the json struct');
       alert(JSON.stringify(data));
 
-      this.httpPost("https://backend/", data).pipe(first())
+      this.httpPost("http://localhost:9000/meal/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;

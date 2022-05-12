@@ -35,7 +35,7 @@ export class DashboardAdminComponent implements OnInit {
   }
 
   getAdmin() {
-    this.httpGet("https://appetizing.herokuapp.com/drink")
+    this.httpGet("https://appetizing.herokuapp.com/admin")
       .subscribe(
         data => {
           this.admin = data;
@@ -48,6 +48,11 @@ export class DashboardAdminComponent implements OnInit {
 
   dashboardHome(){
     this.router.navigate(['dashboard-home']);
+
+  }
+
+  dashboardAllergy(){
+    this.router.navigate(['dashboard-allergy']);
 
   }
 
