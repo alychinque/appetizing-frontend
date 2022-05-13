@@ -25,26 +25,26 @@
                 <li><a href="javascript:void(0)" (click)="dashboardItems()">Items</a></li>
                 <li><a href="javascript:void(0)" (click)="dashboardMeal()">Meal</a></li>
                 <li><a href="javascript:void(0)" (click)="dashboardUser()">Users</a></li>
-                
+
             </ul>
         </div>
     </div>
 
     <a href="javascript:void(0)" (click)="addOrder()" class="btn-primary">Add Order</a>
+    <div *ngFor="let order of orderList">
+        <table class="table">
+            <tr>
+                <th>Table Number</th>
+                <th>User id</th>
+                <th>Meals</th>
+                <th>Drinks</th>
+                <th>Extras</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
 
-    <table class="table">
-        <tr>
-            <th>Table Number</th>
-            <th>User id</th>
-            <th>Meals</th>
-            <th>Drinks</th>
-            <th>Extras</th>
-            <th>Price</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        <div *ngFor="let order">
             <tr>
                 <td>{{order.tableNumber}}</td>
                 <td>{{order.userIdOrder}}</td>
@@ -52,20 +52,21 @@
                 <td>{{order.drinkOrder}}</td>
                 <td>{{order.extraOrder}}</td>
                 <td>{{order.priceOrder}}</td>
-                <td>{{order}}</td>
-                <td>{{order}}</td>
+                <td>{{order.dateOrder}}</td>
+                <td>{{order.status}}</td>
                 <td>
                     <a href="javascript:void(0)" (click)="updateOrder()" class="btn-secondary">Update Order</a>
                     <a href="" class="btn-danger">Delete Order</a>
                 </td>
             </tr>
-        </div>
-    </table>
 
+        </table>
+    </div>
     <footer>
         <div class="footer">
             <div class="wrapper">
-                <p class="text-center">Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights reserved.</p>
+                <p class="text-center">Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights
+                    reserved.</p>
             </div>
         </div>
     </footer>

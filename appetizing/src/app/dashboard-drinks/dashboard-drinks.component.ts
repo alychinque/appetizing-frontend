@@ -12,7 +12,7 @@ import { Drink } from '../interface/drink';
 })
 export class DashboardDrinksComponent implements OnInit {
 
-  drink: Drink[] = [];
+  drinkList: Drink[] = [];
   drinkCopy: Drink[] = [];
 
   constructor(private router: Router, private http: HttpClient) {
@@ -35,25 +35,12 @@ export class DashboardDrinksComponent implements OnInit {
     }));
   }
 
-  httpDelete(url: string, request: any) {
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      })
-    };
-
-    return this.http.delete<any>(url, request).pipe(map((data) => {
-      return data;
-    }));
-  }
-
   getDrink() {
     this.httpGet("https://appetizing.herokuapp.com/drink")
       .subscribe(
         data => {
-          this.drink = data;
+          this.drinkList = data;
+
           this.drinkCopy = data;
         },
         error => {
@@ -61,7 +48,15 @@ export class DashboardDrinksComponent implements OnInit {
         });
   }
 
+  httpDelete(url: string, request: any) {
+
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
+
   deleteDrink(data: Drink) {
+    alert(JSON.stringify(data));
     this.httpDelete("http://localhost:9000/drink/", data);
   }
 

@@ -39,6 +39,7 @@ export class DashboardAddAllergyComponent implements OnInit {
       return data;
     }));
   }
+  
 
   addAllergy() {
     if (this.addAllergyForm.valid) {

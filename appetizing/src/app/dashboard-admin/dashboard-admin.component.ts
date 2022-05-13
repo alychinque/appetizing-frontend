@@ -11,7 +11,7 @@ import { Admin } from '../interface/admin';
 })
 export class DashboardAdminComponent implements OnInit {
 
-  admin: Admin[] = [];
+  adminList: Admin[] = [];
   adminCopy: Admin[] = [];
 
   constructor(private router: Router, private http: HttpClient) {
@@ -38,7 +38,7 @@ export class DashboardAdminComponent implements OnInit {
     this.httpGet("https://appetizing.herokuapp.com/admin")
       .subscribe(
         data => {
-          this.admin = data;
+          this.adminList = data;
           this.adminCopy = data;
         },
         error => {

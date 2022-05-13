@@ -25,44 +25,45 @@
                 <li><a href="javascript:void(0)" (click)="dashboardItems()">Items</a></li>
                 <li><a href="javascript:void(0)" (click)="dashboardOrder()">Order</a></li>
                 <li><a href="javascript:void(0)" (click)="dashboardUser()">Users</a></li>
-                
+
             </ul>
 
         </div>
     </div>
 
     <a href="javascript:void(0)" (click)="addMeal()" class="btn-primary">Add Meal</a>
+    <div *ngFor="let meal of mealList">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Item</th>
+                <th>Allergies</th>
+                <th>Extras</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
 
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Item</th>
-            <th>Allergies</th>
-            <th>Extras</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        <div *ngFor="let meal">
             <tr>
                 <td>{{meal.nameMeal}}</td>
                 <td>{{meal.priceMeal}}</td>
-                <td>{{meal.item}}</td>
-                <td>{{meal}}</td>
+                <td>{{meal.items}}</td>
+                <td>{{meal.allergies}}</td>
                 <td>{{meal.extras}}</td>
-                <td>{{meal}}</td>
+                <td>{{meal.status}}</td>
                 <td>
                     <a href="javascript:void(0)" (click)="updateMeal()" class="btn-secondary">Update Meal</a>
                     <a href="" class="btn-danger">Delete Meal</a>
                 </td>
             </tr>
-        </div>
-    </table>
 
+        </table>
+    </div>
     <footer>
         <div class="footer">
             <div class="wrapper">
-                <p class="text-center">Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights reserved.</p>
+                <p class="text-center">Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights
+                    reserved.</p>
             </div>
         </div>
     </footer>

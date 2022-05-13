@@ -11,7 +11,7 @@ import { Order } from '../interface/order';
 })
 export class DashboardOrderComponent implements OnInit {
 
-  order: Order[] = [];
+  orderList: Order[] = [];
   orderCopy: Order[] = [];
 
    constructor(private router: Router, private http: HttpClient) {
@@ -38,7 +38,7 @@ export class DashboardOrderComponent implements OnInit {
     this.httpGet("https://appetizing.herokuapp.com/order")
       .subscribe(
         data => {
-          this.order = data;
+          this.orderList = data;
           this.orderCopy = data;
         },
         error => {

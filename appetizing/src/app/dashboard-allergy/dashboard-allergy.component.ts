@@ -11,8 +11,12 @@ import { Allergy } from '../interface/allergy';
 })
 export class DashboardAllergyComponent implements OnInit {
 
-  allergy: Allergy[] = [];
+  allergyList: Allergy[] = [];
   allergyCopy: Allergy[] = [];
+
+  allergyTodelete: Allergy[] = [];
+  errorSign = false;
+  clicked = false;
 
   constructor(private router: Router, private http: HttpClient) {
   }
@@ -34,11 +38,19 @@ export class DashboardAllergyComponent implements OnInit {
     }));
   }
 
+  httpDelete(url: string, request: any) {
+
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
+
   getAllergy() {
+    
     this.httpGet("https://appetizing.herokuapp.com/allergy")
-      .subscribe(
+      .subscribe( 
         data => {
-          this.allergy = data;
+          this.allergyList = data;
           this.allergyCopy = data;
         },
         error => {
@@ -46,46 +58,56 @@ export class DashboardAllergyComponent implements OnInit {
         });
   }
 
-  dashboardHome(){
+  deleteAllergy(allergyToDelete: Allergy) {
+
+    alert(JSON.stringify(allergyToDelete));
+    this.clicked = true; 
+
+    this.httpDelete("https://localhost:9000/allergy", allergyToDelete);
+
+
+  }
+
+  dashboardHome() {
     this.router.navigate(['dashboard-home']);
 
   }
 
-  dashboardAdmin(){
+  dashboardAdmin() {
     this.router.navigate(['dashboard-admin']);
 
   }
 
-  dashboardDrinks(){
+  dashboardDrinks() {
     this.router.navigate(['dashboard-drinks']);
 
   }
 
-  dashboardItems(){
+  dashboardItems() {
     this.router.navigate(['dashboard-items']);
 
   }
 
-  dashboardMeal(){
+  dashboardMeal() {
     this.router.navigate(['dashboard-meal']);
 
   }
 
-  dashboardOrder(){
+  dashboardOrder() {
     this.router.navigate(['dashboard-order']);
 
   }
 
-  dashboardUser(){
+  dashboardUser() {
     this.router.navigate(['dashboard-user']);
 
   }
 
-  addAllergy(){
+  addAllergy() {
     this.router.navigate(['dashboard-add-allergy']);
   }
 
-  updateAllergy(){
+  updateAllergy() {
     this.router.navigate(['dashboard-update-allergy']);
   }
 

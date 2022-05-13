@@ -25,39 +25,42 @@
                 <li><a href="javascript:void(0)" (click)="dashboardMeal()">Meal</a></li>
                 <li><a href="javascript:void(0)" (click)="dashboardOrder()">Order</a></li>
                 <li><a href="javascript:void(0)" (click)="dashboardUser()">Users</a></li>
-                
+
             </ul>
         </div>
     </div>
 
     <a href="javascript:void(0)" (click)="dashboardAddDrinks()" class="btn-primary">Add Drink</a>
+    <div *ngFor="let drink of drinkList">
+        <table class="table">
 
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        <div *ngFor="let drink">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+
             <tr>
                 <td>{{drink.nameDrink}}</td>
                 <td>{{drink.priceDrink}}</td>
                 <td>{{drink.category}}</td>
-                <td>{{drink}}</td>
+                <td>{{drink.status}}</td>
                 <td>
                     <a href="javascript:void(0)" (click)="updateDrink()" class="btn-secondary">Update Drink</a>
-                    <a href="" class="btn-danger">Delete Drink</a>
+                    <a href="javascript:void(0)" (click)="deleteDrink(drink)" class="btn-danger">Delete Drink</a>
                 </td>
             </tr>
-        </div>
-    </table>
+
+        </table>
+    </div>
 
     <footer>
         <div class="footer">
             <div class="wrapper">
-                <p class="text-center">Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights reserved.</p>
+                <p class="text-center">Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights
+                    reserved.</p>
             </div>
         </div>
     </footer>

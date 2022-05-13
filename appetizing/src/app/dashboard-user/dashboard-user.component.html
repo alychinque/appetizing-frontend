@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage</title>
- 
+
 </head>
 
 <body>
@@ -25,20 +25,20 @@
                 <li><a href="javascript:void(0)" (click)="dashboardItems()">Items</a></li>
                 <li><a href="javascript:void(0)" (click)="dashboardMeal()">Meal</a></li>
                 <li><a href="javascript:void(0)" (click)="dashboardOrder()">Order</a></li>
-                
+
             </ul>
         </div>
     </div>
+    <div *ngFor="let user of userList">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
 
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        <div *ngFor="let user">
             <tr>
                 <td>{{user.nameUser}}</td>
                 <td>{{user.emailUser}}</td>
@@ -48,9 +48,9 @@
                     <a href="" class="btn-danger">Delete User</a>
                 </td>
             </tr>
-        </div>
-    </table>
 
+        </table>
+    </div>
     <footer>
         <div class="footer">
             <div class="wrapper">

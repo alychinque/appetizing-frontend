@@ -11,7 +11,7 @@ import { Item } from '../interface/item';
 })
 export class DashboardItemsComponent implements OnInit {
 
-  item: Item[] = [];
+  itemList: Item[] = [];
   itemCopy: Item[] = [];
 
   constructor(private router: Router, private http: HttpClient) {
@@ -38,7 +38,7 @@ export class DashboardItemsComponent implements OnInit {
     this.httpGet("https://appetizing.herokuapp.com/item")
       .subscribe(
         data => {
-          this.item = data;
+          this.itemList = data;
           this.itemCopy = data;
         },
         error => {

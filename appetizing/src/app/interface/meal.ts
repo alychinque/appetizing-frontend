@@ -3,8 +3,10 @@ export interface Meal {
     nameMeal: string;
     quantity: number;
     priceMeal: number;
+    allergies: Allergy[];
     items: Items[];
     extras: Extras[];
+    status: string;
   }
 
   export interface Extras {
@@ -16,5 +18,11 @@ export interface Meal {
   export interface Items {
     _id: string;
     nameItem: string;
+  }
+
+  export interface Allergy {
+    _id: string;
+    nameAllergy: string;
+    numberAllergy: Number;
   }
   
