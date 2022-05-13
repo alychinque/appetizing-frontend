@@ -31,6 +31,11 @@ export class FoodComponent implements OnInit {
 
   clickDrink: boolean = false;
 
+  change: boolean = false;
+
+//loader
+loader = false;
+
   constructor(private router: Router, private http: HttpClient, private itemsService: ItemsService, private routerActivated: ActivatedRoute) {
 
   }
@@ -179,18 +184,56 @@ export class FoodComponent implements OnInit {
         });
   }
 
-  checkout()
-  {
-    this.router.navigate(['checkout']);
+  login() {
+    this.loader = true;
+   setTimeout(()=>{                 
+     this.router.navigate(['login']);
+ }, 1500);  
   }
+  
+  signup() {
+   this.loader = true;
+   setTimeout(()=>{                 
+     this.router.navigate(['signup']);
+ }, 1500);  
+ }
+ 
+ foodOrDrink(id:string) {
+   this.loader = true;
+   setTimeout(()=>{                 
+     this.router.navigate(['food', id]);
+ }, 1500);  
+ }
+ 
+ home(){
+   this.loader = true;
+   setTimeout(()=>{                 
+     this.router.navigate(['home']);
+ }, 1500);  
+ }
+ 
+ checkout(){
+   this.loader = true;
+   setTimeout(()=>{                 
+     this.router.navigate(['checkout']);
+ }, 1500);  
+ }
 
   clickMenuAction1()
   {
-    this.clickDrink = false;
+    this.change = true;
+    setTimeout(()=>{                 
+      this.clickDrink = false;
+      this.change = false;
+  }, 1500);  
   }
   clickMenuAction2()
   {
-    this.clickDrink = true;
+    this.change = true;
+    setTimeout(()=>{                 
+      this.clickDrink = true;
+      this.change = false;
+  }, 1500);  
   }
 
 }

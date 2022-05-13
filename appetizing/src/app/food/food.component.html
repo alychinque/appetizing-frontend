@@ -1,212 +1,291 @@
-<!-- Header Start -->
-<header class="header">
-    <div class="primary-navigation sticky-header">
-        <div class="container">
-            <nav class="navbar navbar-expand-md  navbar-light">
-                <!-- logo <a class="navbar-brand pl-5" href="index-2.html"><img src="assets/images/logo.png" alt="BrandNav"></a> -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index-2.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="menu.html">Menu</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Pages
-                                <i class="fas fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="register.html">Sign Up</a></li>
-                                <li><a class="dropdown-item" href="account.html">Account</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                        <li class="nav-item login-item">
-                            <a class="nav-link" href="login.html"><i class="far fa-user"></i>
-                                Login</a>
-                        </li>
-                        <li *ngIf="totalQuantity > 0" class="nav-item mini-cart">
-                            <a href="javascript:void(0)" class="nav-link">
-                                <i class="fas fa-shopping-bag"></i>
-                                <sup class="cart-quantity">{{totalQuantity}}</sup>
-                            </a>
-                            <div class="mini-cart-box">
-                                <div *ngFor="let meal of cartMeal" class="cart-item">
-                                    <div class="thumb">
-                                        <img class="w-100" src="assets/images/cart2.png" alt="cart-image">
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="title"><a href="javascript:void(0)">{{meal.nameMeal}}</a></h5>
-                                        <span class="product-quantity">{{meal.quantity}}×</span>
-                                        <a href="javascript:void(0)" (click)="deleteItem(meal._id)"
-                                            class="cart-trash"><i class="fa fa-trash"></i></a>
-                                    </div>
-                                </div>
-                                <div *ngFor="let drink of cartDrink" class="cart-item">
-                                    <div class="thumb">
-                                        <img class="w-100" src="assets/images/cart1.png" alt="cart-image">
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="title"><a href="javascript:void(0)">{{drink.nameDrink}}</a></h5>
-                                        <span class="product-quantity">{{drink.quantity}}×</span>
-                                        <a href="javascript:void(0)" (click)="deleteItemDrink(drink._id)"
-                                            class="cart-trash"><i class="fa fa-trash"></i></a>
-                                    </div>
-                                </div>
-                                <div class="cart-total-money">
-                                    <h4>Total: <span class="money">${{totalPrice | number : '.2-2'}}</span></h4>
-                                </div>
-                                <div class="cart-btn">
-                                    <a href="javascript:void(0)" (click)="checkout()">Checkout</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- Header End -->
-
-<!-- Start Features Area -->
-<div class="features-area section-pt">
-    <div class="container">
-        <div class="row">
-            <div (click)="clickMenuAction1()" class="col-lg-3 col-sm-6">
-                <div class="single-feature shadow-lg p-3">
-                    <div class="feature-icon">
-                        <img src="assets/images/fast-food-icon.png" class="img-fluid" alt="Fast Food" />
-                    </div>
-                    <div class="feature-text">
-                        <h4 class="heading-4">Food</h4>
-                    </div>
-                </div>
-            </div>
-            <div (click)="clickMenuAction2()" class="col-lg-3 col-sm-6">
-                <div class="single-feature shadow-lg p-3">
-                    <div class="feature-icon">
-                        <img src="assets/images/glass-icon.png" class="img-fluid" alt="Cocktails" />
-                    </div>
-                    <div class="feature-text">
-                        <h4 class="heading-4">Drinks</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div *ngIf="loader" id="preloader">
+    <div class="preloader">
+        <span></span>
+        <span></span>
     </div>
 </div>
-<!-- End Features Area -->
 
-<!-- Start Foods Tabs Area -->
-<div class="foods-tabs-area section-ptb bg-semi-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-chiken" role="tabpanel"
-                        aria-labelledby="v-pills-chiken-tab">
-                        <div class="row">
+<header class="header">
+        <div class="primary-navigation sticky-header">
+            <div class="container">
+                <nav class="navbar navbar-expand-md  navbar-light">
+                    <a class="navbar-brand pl-5" href="javascript:void(0)" (click)="home()"><img src="../../assets/images/logo.png" alt="BrandNav"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="home()">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="foodOrDrink('0')">Meals</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="foodOrDrink('1')">Drinks</a>
+                            </li>
+                            <li class="nav-item login-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="login()"><i class="far fa-user"></i>
+                                    Login</a>
+                            </li>
+                            <li class="nav-item login-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="signup()">
+                                    Sign Up</a>
+                            </li>
+                            <li *ngIf="totalQuantity > 0" class="nav-item mini-cart">
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-shopping-bag"></i>
+                                    <sup class="cart-quantity">{{totalQuantity}}</sup>
+                                </a>
+                                <div class="mini-cart-box">
+                                    <div *ngFor="let meal of cartMeal"  class="cart-item">
+                                        <div class="thumb">
+                                            <img class="w-100" src="../../assets/images/cart2.png" alt="cart-image">
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="title"><a>{{meal.nameMeal}}</a></h5>
+                                            <span class="product-quantity">{{meal.quantity}}×</span>
+                                            <a href="javascript:void(0)" (click)="deleteItem(meal._id)"
+                                                class="cart-trash"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </div>
+                                    <div *ngFor="let drink of cartDrink"  class="cart-item">
+                                        <div class="thumb">
+                                            <img class="w-100" src="../../assets/images/cart1.png" alt="cart-image">
+                                        </div>
+                                        <div class="content">
+                                            <h5 class="title"><a>{{drink.nameDrink}}</a></h5>
+                                            <span class="product-quantity">{{drink.quantity}}×</span>
+                                            <a href="javascript:void(0)" (click)="deleteItemDrink(drink._id)"
+                                                class="cart-trash"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="cart-total-money">
+                                        <h4>Total: <span class="money">€{{totalPrice | number : '.2-2'}}</span></h4>
+                                    </div>
+                                    <div class="cart-btn">
+                                        <a href="javascript:void(0)" (click)="checkout()">Checkout</a>
+                                    </div>
+                                </div>
+                            </li>
+
+                          
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header-wrapper" style="background-image:url(assets/images/header_bg_01.jpg);">
+        <div class="page-header-2" style="background-image:url(assets/images/header_bg_02.png);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mx-auto text-center">
+                        <div class="page-header-container">
+                            <div class="page-header-content">
+                                <h1 class="heading-one">Our Menu</h1>
+                                <div class="page-nav">
+                                    <ul>
+                                        <li><a href="#">Home ></a></li>
+                                        <li>Menu</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-wrapper section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 order-lg-2 order-1">
+
+                    <!-- Start Features Area -->
+
+
+ 
+                    <div class="shorting-form d-flex justify-content-between bg-semi-white align-items-center p-4">
+                        <div class="filter-info">
+                            <p class="mb-0" *ngIf="clickDrink == false">Showing {{dataRecv.length}} Meals</p>
+                            <p class="mb-0" *ngIf="clickDrink == true">Showing {{dataRecvDrink.length}} Drinks</p>
+                            
+                        </div>
+                        <a *ngIf="clickDrink == false" href="javascript:void(0)"  (click)="clickMenuAction2()" class="sm-btn" style="margin-top: 10px">See drinks instead</a>
+                        <a *ngIf="clickDrink == true" href="javascript:void(0)" (click)="clickMenuAction1()" class="sm-btn" style="margin-top: 10px">See meals instead</a>
+                    </div>
+
+                    <div *ngIf="change == true" class="d-flex justify-content-center mt-5">
+                        <div class="spinner-border" role="status">
+                        </div>
+                      </div>
+                    
+
+                    <div class="all-products mt-5">
+                        <div class="products-wrapper">
                             <div class="row" *ngIf="clickDrink == false">
-                            <div *ngFor="let meal of dataRecv; let indexMeal = index" class="col-lg-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="javascript:void(0)" class="black-overlay"><img
+                                <div *ngFor="let meal of dataRecv; let indexMeal = index" class="col-lg-6 col-sm-6">
+                                    <div class="card border-0 product-card custom-round">
+                                        <div class="card-thumb">
+                                            <a href="javascript:void(0)" class="black-overlay"><img
                                                 src="assets/images/food_01.jpg" class="card-img-top" alt="food" /></a>
                                         <a href="javascript:void(0)" (click)="addCart(meal)" class="sm-btn"><i
                                                 class="fas fa-plus"></i> Add To Cart</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a>{{meal.nameMeal}}</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-price">
-                                                <span>${{meal.priceMeal}}</span>
-                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-check mx-auto mb-5">
-                                        <h6 class="heading-5"><a>Contains</a></h6>
-                                        <div *ngFor="let items of meal.items">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckChecked" checked disabled>
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                                {{items.nameItem}}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="form-check mx-auto">
-                                            <h6 class="heading-5"><a>Extras</a></h6>
-                                            <div *ngFor="let extras of meal.extras; let indexExtra = index">
-                                                <input *ngIf="extras._id != null" [(ngModel)]="extras.checked"
-                                                    (change)="updateElement(extras, meal, indexExtra, indexMeal)"
-                                                    class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckChecked" [checked]="extras.checked">
-                                                <label class="form-check-label" for="flexCheckChecked">
-                                                    {{extras.nameItem}}
-                                                </label>
+                                        <div class="card-body">
+                                            <h6 class="heading-6"><a href="javascript:void(0)">{{meal.nameMeal}}</a></h6>
+                                            <div class="card-meta d-flex py-2">
+                                                <div class="product-rating">
+                                                    <span class="rating-point">Contains</span>
+                                                    <div *ngFor="let items of meal.items">
+                                                        <span class="rating-point"> {{items.nameItem}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="product-rating">
+                                                    <span class="rating-point" style="margin-left: 10px;">Extras</span>
+                                                    <div *ngFor="let extras of meal.extras; let indexExtra = index">
+                                                        <span class="rating-point" style="margin-left: 10px;">  <input *ngIf="extras._id != null" [(ngModel)]="extras.checked"
+                                                            (change)="updateElement(extras, meal, indexExtra, indexMeal)"
+                                                            class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckChecked" [checked]="extras.checked"> {{extras.nameItem}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="product-price pl-4">
+                                                    <span>€{{meal.priceMeal}}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                             <div class="row" *ngIf="clickDrink == true">
-                            <div *ngFor="let drink of dataRecvDrink; let indexDrink = index" class="col-lg-6">
-                                <div class="card border-0 product-card custom-round">
-                                    <div class="card-thumb">
-                                        <a href="javascript:void(0)" class="black-overlay"><img
-                                                src="assets/images/food_02.jpg" class="card-img-top" alt="food" /></a>
-                                        <a href="javascript:void(0)" (click)="addCartDrink(drink)" class="sm-btn"><i class="fas fa-plus"></i> Add To
-                                            Cart</a>
-                                    </div>
-                                    <div class="card-body">
-                                        <h6 class="heading-6"><a>{{drink.nameDrink}}</a></h6>
-                                        <div class="card-meta d-flex py-2">
-                                            <div class="product-price">
-                                                <span>${{drink.priceDrink}}</span>
+                                <div *ngFor="let drink of dataRecvDrink; let indexDrink = index" class="col-lg-6  col-sm-6">
+                                    <div class="card border-0 product-card custom-round">
+                                        <div class="card-thumb">
+                                            <a href="javascript:void(0)" class="black-overlay"><img
+                                                    src="assets/images/food_02.jpg" class="card-img-top" alt="food" /></a>
+                                            <a href="javascript:void(0)" (click)="addCartDrink(drink)" class="sm-btn"><i class="fas fa-plus"></i> Add To
+                                                Cart</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="heading-6"><a>{{drink.nameDrink}}</a></h6>
+                                            <div class="card-meta d-flex py-2">
+                                                <div class="product-price">
+                                                    <span>€{{drink.priceDrink}}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-check mx-auto mb-5">
-                                        <h6 class="heading-5"><a>{{drink.category}}</a></h6>
+                                        <div class="form-check mx-auto mb-5">
+                                            <h6 class="heading-5"><a>{{drink.category}}</a></h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
-
                     </div>
-                </div><!-- Tab Pane End -->
+                </div>
+
             </div>
-
-        </div> <!-- COL END -->
+        </div>
     </div>
-</div>
-<!-- End Foods Tabs Area -->
 
-<!-- Start Footer -->
-<footer class="footer-wrapper">
-    <div class="footer-bottom bg-black-2 py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="copyright-text text-center">
-                        <p>Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights reserved.</p>
+    <footer class="footer-wrapper">
+        <div class="footer-area py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 mb-sm-5 mb-lg-0 mb-xs-5">
+                        <div class="footer-widget">
+                            <div class="footer-logo">
+                                <a href="javascript:void(0)" class="d-inline-block mb-3"><img src="../../assets/images/logo.png"
+                                        alt="logo" class="img-fluid" /></a>
+                            </div>
+                            <p class="text-white">Follow us on social media</p>
+                            <div class="social-profiles">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-xs-5">
+                        <div class="footer-widget">
+
+                            <h3 class="widget-title">Instagram Gallery</h3>
+                            <div class="photos-gallery">
+                                <div class="single-gallery">
+                                    <a href="javascript:void(0)"><img src="../../assets/images/gallery/01.jpg" alt="gallery 01"
+                                            class="img-fluid" /></a>
+                                </div>
+                                <div class="single-gallery">
+                                    <a href="javascript:void(0)"><img src="../../assets/images/gallery/02.jpg" alt="gallery 01"
+                                            class="img-fluid" /></a>
+                                </div>
+                                <div class="single-gallery">
+                                    <a href="javascript:void(0)"><img src="../../assets/images/gallery/03.jpg" alt="gallery 01"
+                                            class="img-fluid" /></a>
+                                </div>
+                                <div class="single-gallery">
+                                    <a href="javascript:void(0)"><img src="../../assets/images/gallery/04.jpg" alt="gallery 01"
+                                            class="img-fluid" /></a>
+                                </div>
+                                <div class="single-gallery">
+                                    <a href="javascript:void(0)"><img src="../../assets/images/gallery/05.jpg" alt="gallery 01"
+                                            class="img-fluid" /></a>
+                                </div>
+                                <div class="single-gallery">
+                                    <a href="javascript:void(0)"><img src="../../assets/images/gallery/06.jpg" alt="gallery 01"
+                                            class="img-fluid" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h3 class="widget-title">Contact Us</h3>
+                            <div class="general-nav-2">
+                                <ul>
+                                    <li>
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        128 Capel St, North City, Dublin, Ireland.
+                                    </li>
+                                    <li><i class="fas fa-phone-volume"></i> <span><a href="javascript:void(0)">083829102</a> <br>
+                                            <a href="javascript:void(0)">083829103</a></span>
+                                    </li>
+                                    <li><i class="fas fa-envelope"></i> <span><a
+                                                href="mailto:services@appetizing.com">services@appetizing.com
+                                            </a> <br>
+                                            <a href="mailto:info@appetizing.com">info@appetizing.com</a></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+        <div class="footer-bottom bg-black-2 py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="copyright-text text-center">
+                            <p>Copyright © 2022 <a href="javascript:void(0)" href="javascript:void(0)"><strong>appetizing.</strong></a> All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>

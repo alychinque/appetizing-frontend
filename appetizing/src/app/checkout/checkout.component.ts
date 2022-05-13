@@ -33,6 +33,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     this.checkoutForm = new FormGroup({
       table: new FormControl(undefined, [Validators.required])
     });

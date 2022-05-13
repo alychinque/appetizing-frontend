@@ -27,6 +27,11 @@ export class SignupComponent implements OnInit {
   //login or password / api offline
   errorSign = false;
 
+  //created and loader
+  created = false;
+
+  loader = false;
+
   //constructor
   //anything will run when access this page or reload
   constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder) { }
@@ -38,10 +43,10 @@ export class SignupComponent implements OnInit {
     //instance the login form and set the validators
     this.loginForm = new FormGroup({
       email: new FormControl(undefined, [Validators.required, Validators.email, Validators.maxLength(60)]),
-      name: new FormControl(undefined, [Validators.required,  Validators.minLength(8), Validators.maxLength(40)]),
+      name: new FormControl(undefined, [Validators.required,  Validators.minLength(8), Validators.maxLength(60)]),
       phone: new FormControl(undefined, [Validators.required]),
-      password: new FormControl(['', [Validators.required, Validators.minLength(6), Validators.minLength(60)]]),
-      confirm_password: new FormControl(['', Validators.required])
+      password: new FormControl(undefined, [Validators.required]),
+      confirm_password: new FormControl(undefined, [Validators.required])
   }, {
       validators: [this.match('password', 'confirm_password')]
   });
@@ -63,30 +68,40 @@ export class SignupComponent implements OnInit {
   signup()
   {
     if (this.loginForm.valid) {
-
       
       this.clicked = true;
 
-      let phoneArray = this.loginForm.controls['phone'].value;
+      setTimeout(()=>{         
+        let phoneArray = this.loginForm.controls['phone'].value;
 
-      let data = { 
-        email: this.loginForm.controls['email'].value, 
-        password: this.loginForm.controls['password'].value,
-        name: this.loginForm.controls['name'].value,
-        phone: phoneArray.e164Number
-       };
+        let data = { 
+          email: this.loginForm.controls['email'].value, 
+          password: this.loginForm.controls['password'].value,
+          name: this.loginForm.controls['name'].value,
+          phone: phoneArray.e164Number
+         };
+  
+        this.httpPost("http://localhost:9000/register/", data).pipe(first())
+          .subscribe(
+            data => {
+              this.errorSign = false;
+              this.created = true;
+              setTimeout(()=>{              
+                  this.loader = true;     
+                  setTimeout(()=>{                 
+                    this.router.navigate(['login']);
+                }, 1500);           
+            }, 1500);
+            },
+            error => {
+              this.errorSign = true;
+              this.clicked = false;
+              this.created = false;
+              this.loader = false;
+              alert(JSON.stringify(error));
+            });
+    }, 1500);
 
-      this.httpPost("http://localhost:9000/user/", data).pipe(first())
-        .subscribe(
-          data => {
-            this.errorSign = false;
-            this.router.navigate(['login']);
-          },
-          error => {
-            this.errorSign = true;
-            this.clicked = false;
-            alert('User already exists!');
-          });
     }
     else {
       alert("Fill the fields!");
@@ -114,7 +129,10 @@ export class SignupComponent implements OnInit {
 
   goToLogin()
   {
-    this.router.navigate(['login']);
+    this.loader = true;
+    setTimeout(()=>{                 
+      this.router.navigate(['login']);
+  }, 1500);  
   }
 
 }

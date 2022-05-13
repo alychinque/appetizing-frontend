@@ -17,8 +17,14 @@ export class LoginComponent implements OnInit {
   //variable clicked
   clicked = false;
 
-  //login or password / api offline
+  //api offline
   errorLogin = false;
+
+  //invalid user
+  errorCred = false;
+
+  //loader
+  loader = false;
 
   //constructor
   //anything will run when access this page or reload
@@ -52,20 +58,32 @@ export class LoginComponent implements OnInit {
 
   login()
   {
+    
     if (this.loginForm.valid) {
+
+      this.errorCred = false;
 
       this.clicked = true;
 
       let data = { email: this.loginForm.controls['email'].value, password: this.loginForm.controls['password'].value };
 
-      this.httpPost("https://backend/", data).pipe(first())
+      this.httpPost("http://localhost:9000/login/", data).pipe(first())
         .subscribe(
           data => {
             this.errorLogin = false;
           },
           error => {
-            this.errorLogin = true;
             this.clicked = false;
+
+            if(error.error.message == "Unauthorized not foundUser.")
+            {
+              this.errorCred = true;
+            }
+            else{
+              this.errorLogin = true;
+            }
+            
+            
           });
     }
     else {
@@ -75,7 +93,15 @@ export class LoginComponent implements OnInit {
 
   recovery()
   {
-    this.router.navigate(['recovery']);
+    alert('Coming soon...')
+  }
+
+  signup()
+  {
+    this.loader = true;
+    setTimeout(()=>{                 
+      this.router.navigate(['signup']);
+  }, 1500);  
   }
 
 }
