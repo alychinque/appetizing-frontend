@@ -47,15 +47,19 @@ export class DashboardAddDrinkComponent implements OnInit {
 
       this.clicked = true;
 
-      let data = {
-        name: this.addDrinkForm.controls['name'].value,
-        price: this.addDrinkForm.controls['price'].value,
-        category: this.addDrinkForm.controls['category'].value,
-        status: this.addDrinkForm.controls['status'].value
-      };
+      let status = this.addDrinkForm.controls['status'].value;
+      if(status == "Yes"){
+        status= true;
+      }else{
+        status=false;
+      }
 
-      alert('next alert will be showing the json struct');
-      alert(JSON.stringify(data));
+      let data = {
+        nameDrink: this.addDrinkForm.controls['name'].value,
+        priceDrink: this.addDrinkForm.controls['price'].value,
+        category: this.addDrinkForm.controls['category'].value,
+        active: status
+      };
 
       this.httpPost("http://localhost:9000/drink", data).pipe(first())
         .subscribe(
@@ -64,6 +68,7 @@ export class DashboardAddDrinkComponent implements OnInit {
             alert('drink added');
           },
           error => {
+            alert(JSON.stringify(error))
             this.errorSign = true;
             this.clicked = false;
           });

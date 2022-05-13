@@ -46,6 +46,18 @@ export class DashboardAdminComponent implements OnInit {
         });
   }
 
+  httpDelete(url: string, request: any) {
+
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
+
+  deleteAdmin(data: Admin) {
+    alert(JSON.stringify(data));
+    this.httpDelete("http://localhost:9000/admin/", data);
+  }
+
   dashboardHome(){
     this.router.navigate(['dashboard-home']);
 

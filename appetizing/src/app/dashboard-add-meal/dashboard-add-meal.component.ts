@@ -49,24 +49,30 @@ export class DashboardAddMealComponent implements OnInit {
 
       this.clicked = true;
 
+      let status = this.addMealForm.controls['status'].value;
+      if(status == "Yes"){
+        status= true;
+      }else{
+        status=false;
+      }
+
       let data = {
-        name: this.addMealForm.controls['name'].value,
-        price: this.addMealForm.controls['price'].value,
+        nameMeal: this.addMealForm.controls['name'].value,
+        priceMeal: this.addMealForm.controls['price'].value,
         items: this.addMealForm.controls['items'].value,
         allergies: this.addMealForm.controls['allergies'].value,
         extras: this.addMealForm.controls['extras'].value,
-        status: this.addMealForm.controls['status'].value
+        active: status
       };
-
-      alert('next alert will be showing the json struct');
-      alert(JSON.stringify(data));
 
       this.httpPost("http://localhost:9000/meal/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;
+            alert('meal added');
           },
           error => {
+            alert(JSON.stringify(error))
             this.errorSign = true;
             this.clicked = false;
           });

@@ -56,8 +56,7 @@ export class DashboardUpdateDrinkComponent implements OnInit {
         status: this.updateDrinkForm.controls['status'].value
       };
 
-      alert('next alert will be showing the json struct');
-      alert(JSON.stringify(data));
+     alert(this.updateDrinkForm.controls['status'].value)
 
       this.httpUpdate("http://localhost:9000/drink", data).pipe(first())
         .subscribe(

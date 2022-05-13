@@ -46,6 +46,18 @@ export class DashboardItemsComponent implements OnInit {
         });
   }
 
+  httpDelete(url: string, request: any) {
+
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
+
+  deleteItem(data: Item) {
+    alert(JSON.stringify(data));
+    this.httpDelete("http://localhost:9000/item/", data);
+  }
+
   dashboardHome(){
     this.router.navigate(['dashboard-home']);
 

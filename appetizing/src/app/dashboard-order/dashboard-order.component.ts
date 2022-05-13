@@ -46,6 +46,18 @@ export class DashboardOrderComponent implements OnInit {
         });
   }
 
+  httpDelete(url: string, request: any) {
+
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
+
+  deleteOrder(data: Order) {
+    alert(JSON.stringify(data));
+    this.httpDelete("http://localhost:9000/order/", data);
+  }
+
   dashboardHome(){
     this.router.navigate(['dashboard-home']);
 

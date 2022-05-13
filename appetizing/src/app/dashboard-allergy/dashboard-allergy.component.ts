@@ -38,13 +38,6 @@ export class DashboardAllergyComponent implements OnInit {
     }));
   }
 
-  httpDelete(url: string, request: any) {
-
-    return this.http.delete<any>(url, request).pipe(map((data) => {
-      return data;
-    }));
-  }
-
   getAllergy() {
     
     this.httpGet("https://appetizing.herokuapp.com/allergy")
@@ -58,14 +51,16 @@ export class DashboardAllergyComponent implements OnInit {
         });
   }
 
-  deleteAllergy(allergyToDelete: Allergy) {
+  httpDelete(url: string, request: any) {
 
-    alert(JSON.stringify(allergyToDelete));
-    this.clicked = true; 
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
 
-    this.httpDelete("https://localhost:9000/allergy", allergyToDelete);
-
-
+  deleteAllergy(data: Allergy) {
+    alert(JSON.stringify(data));
+    this.httpDelete("http://localhost:9000/allergy/", data);
   }
 
   dashboardHome() {
