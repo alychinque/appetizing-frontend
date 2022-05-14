@@ -45,8 +45,8 @@
                 <td>{{admin.userNameAdmin}}</td>
                 <td>{{admin.passwordAdmin}}</td>
                 <td>
-                    <a href="javascript:void(0)" (click)="updateAdmin()" class="btn-secondary">Update Admin</a>
-                    <a href="" class="btn-danger">Delete Admin</a>
+                    <a href="javascript:void(0)" (click)="updateAdmin(admin._id)" class="btn-secondary">Update Admin</a>
+                    <a href="javascript:void(0)" (click)="deleteAdmin(admin)" class="btn-danger">Delete Admin</a>
                 </td>
             </tr>
 

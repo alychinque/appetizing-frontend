@@ -54,6 +54,13 @@ export class DashboardAddDrinkComponent implements OnInit {
         status=false;
       }
 
+      let data = {
+        nameDrink: this.addDrinkForm.controls['name'].value,
+        priceDrink: this.addDrinkForm.controls['price'].value,
+        category: this.addDrinkForm.controls['category'].value,
+        active: status
+      }; 
+
       this.httpPost("https://appetizing.herokuapp.com/drink/", data).pipe(first())
         .subscribe(
           data => {

@@ -12,8 +12,10 @@ import { Item } from '../interface/item';
 export class DashboardItemsComponent implements OnInit {
 
   itemList: Item[] = [];
-  itemCopy: Item[] = [];
 
+  errorSign = false;
+  clicked = false;
+  
   constructor(private router: Router, private http: HttpClient) {
   }
 
@@ -39,11 +41,14 @@ export class DashboardItemsComponent implements OnInit {
       .subscribe(
         data => {
           this.itemList = data;
-          this.itemCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
         });
+  }
+
+  updateItem(_id: string){
+    this.router.navigate(['dashboard-update-item', _id]);
   }
 
   httpDelete(url: string, request: any) {
@@ -53,9 +58,20 @@ export class DashboardItemsComponent implements OnInit {
     }));
   }
 
-  deleteItem(data: Item) {
-    alert(JSON.stringify(data));
-    this.httpDelete("http://localhost:9000/item/", data);
+  deleteItem(item: Item) {
+
+    let data = { id : item._id }
+    
+    this.httpDelete("https://appetizing.herokuapp.com/item/", data).pipe(first())
+    .subscribe(
+      data => {
+        this.errorSign = false;
+        alert('item deleted');
+      },
+      error => {
+        alert(JSON.stringify(error))
+        this.errorSign = true;
+      });
   }
 
   dashboardHome(){
@@ -97,8 +113,5 @@ export class DashboardItemsComponent implements OnInit {
     this.router.navigate(['dashboard-add-item']);
   }
 
-  updateItem(){
-    this.router.navigate(['dashboard-update-item']);
-  }
 
 }

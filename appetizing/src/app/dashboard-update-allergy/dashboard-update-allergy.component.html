@@ -1,1 +1,56 @@
-<p>dashboard-update-allergy works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appetizing</title>
+
+</head>
+
+<body>
+
+    <img class="logo" src="assets/images/logo.png" alt="logo">
+
+    <h1>Update Allergy</h1>
+
+
+    <form #f="ngForm" [formGroup]="updateAllergyForm">
+
+        <table class="table">
+            <tr>
+                <td>Allergy Name: </td>
+                <td>
+                    <input formControlName="name" type="text" id="allergy-Name" class="form-control" placeholder="{{allergyToUpdate.nameAllergy}}">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Allergy Number: </td>
+                <td>
+                    <input formControlName="number" type="text" id="number-allergy" class="form-control" placeholder="{{allergyToUpdate.numberAllergy}}">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="submit" (click)="updateAllergy()" value="Update Admin" class="btn-secondary">
+                    <a href="javascript:void(0)" (click)="dashboardAllergy()" class="btn-primary">Return</a>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+    <footer>
+        <div class="footer">
+            <div class="wrapper">
+                <p class="text-center">Copyright © 2022 <a href="#">Appetizing</a>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

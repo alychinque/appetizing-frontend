@@ -13,7 +13,9 @@ import { User } from '../interface/user';
 export class DashboardUserComponent implements OnInit {
 
   userList: User[] = [];
-  userCopy: User[] = [];
+  
+  errorSign = false;
+  clicked = false;
 
    constructor(private router: Router, private http: HttpClient) {
   }
@@ -40,7 +42,6 @@ export class DashboardUserComponent implements OnInit {
       .subscribe(
         data => {
           this.userList = data;
-          this.userCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
@@ -54,9 +55,20 @@ export class DashboardUserComponent implements OnInit {
     }));
   }
 
-  deleteUser(data: User) {
-    alert(JSON.stringify(data));
-    this.httpDelete("http://localhost:9000/user/", data);
+  deleteUser(user: User) {
+
+    let data = { id : user._id }
+    
+    this.httpDelete("https://appetizing.herokuapp.com/user/", data).pipe(first())
+    .subscribe(
+      data => {
+        this.errorSign = false;
+        alert('user deleted');
+      },
+      error => {
+        alert(JSON.stringify(error))
+        this.errorSign = true;
+      });
   }
 
   dashboardHome(){

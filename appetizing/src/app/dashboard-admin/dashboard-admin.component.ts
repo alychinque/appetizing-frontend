@@ -12,8 +12,10 @@ import { Admin } from '../interface/admin';
 export class DashboardAdminComponent implements OnInit {
 
   adminList: Admin[] = [];
-  adminCopy: Admin[] = [];
 
+  errorSign = false;
+  clicked = false;
+  
   constructor(private router: Router, private http: HttpClient) {
   }
 
@@ -39,11 +41,14 @@ export class DashboardAdminComponent implements OnInit {
       .subscribe(
         data => {
           this.adminList = data;
-          this.adminCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
         });
+  }
+
+  updateAdmin(_id: string){
+    this.router.navigate(['dashboard-update-admin', _id]);
   }
 
   httpDelete(url: string, request: any) {
@@ -53,9 +58,20 @@ export class DashboardAdminComponent implements OnInit {
     }));
   }
 
-  deleteAdmin(data: Admin) {
-    alert(JSON.stringify(data));
-    this.httpDelete("http://localhost:9000/admin/", data);
+  deleteAdmin(admin: Admin) {
+
+    let data = { id : admin._id }
+    
+    this.httpDelete("https://appetizing.herokuapp.com/admin/", data).pipe(first())
+    .subscribe(
+      data => {
+        this.errorSign = false;
+        alert('admin deleted');
+      },
+      error => {
+        alert(JSON.stringify(error))
+        this.errorSign = true;
+      });
   }
 
   dashboardHome(){
@@ -97,8 +113,5 @@ export class DashboardAdminComponent implements OnInit {
     this.router.navigate(['dashboard-add-admin']);
   }
 
-  updateAdmin(){
-    this.router.navigate(['dashboard-update-admin']);
-  }
 
 }

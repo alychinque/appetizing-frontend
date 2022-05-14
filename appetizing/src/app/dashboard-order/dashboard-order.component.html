@@ -54,8 +54,8 @@
                 <td>{{order.dateOrder}}</td>
                 <td>{{order.status}}</td>
                 <td>
-                    <a href="javascript:void(0)" (click)="updateOrder()" class="btn-secondary">Update Order</a>
-                    <a href="" class="btn-danger">Delete Order</a>
+                    <a href="javascript:void(0)" (click)="updateOrder(order._id)" class="btn-secondary">Update Order</a>
+                    <a href="javascript:void(0)" (click)="deleteOrder(order)" class="btn-danger">Delete Order</a>
                 </td>
             </tr>
 
