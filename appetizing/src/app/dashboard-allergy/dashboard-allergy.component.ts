@@ -56,11 +56,14 @@ export class DashboardAllergyComponent implements OnInit {
       .subscribe( 
         data => {
           this.allergyList = data;
-          this.allergyCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
         });
+  }
+
+  updateAllergy(_id: string){
+    this.router.navigate(['dashboard-update-allergy', _id]);
   }
 
   httpDelete(url: string, request: any) {
@@ -70,9 +73,20 @@ export class DashboardAllergyComponent implements OnInit {
     }));
   }
 
-  deleteAllergy(data: Allergy) {
-    alert(JSON.stringify(data));
-    this.httpDelete("http://localhost:9000/allergy/", data);
+  deleteAllergy(allergy: Allergy) {
+
+    let data = { id : allergy._id }
+   
+    this.httpDelete("https://appetizing.herokuapp.com/allergy/", data).pipe(first())
+    .subscribe(
+      data => {
+        this.errorSign = false;
+        alert('Allergy deleted');
+      },
+      error => {
+        alert(JSON.stringify(error))
+        this.errorSign = true;
+      });;
   }
 
   dashboardHome() {
@@ -112,10 +126,6 @@ export class DashboardAllergyComponent implements OnInit {
 
   addAllergy() {
     this.router.navigate(['dashboard-add-allergy']);
-  }
-
-  updateAllergy() {
-    this.router.navigate(['dashboard-update-allergy']);
   }
 
 }

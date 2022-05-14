@@ -16,42 +16,42 @@
     <h1>Update Meal</h1>
 
 
-    <form action="" method="POST">
+    <form #f="ngForm" [formGroup]="updateMealForm">
 
         <table class="table">
-            <div *ngFor="let meal">
+           
                 <tr>
                     <td>Name: </td>
                     <td> 
-                        <input type="text" name="name" placeholder="Enter Meal Name">
+                        <input formControlName="name" type="text" id="meal_name" class="form-control" placeholder="{{mealToUpdate.nameMeal}}">
                     </td>
                 </tr>
 
                 <tr>
                     <td>Price: </td>
                     <td>
-                        <input type="number" name="price" placeholder="Enter Meal Price">
+                        <input formControlName="price" type="number" id="meal_price" class="form-control" placeholder="{{mealToUpdate.priceMeal}}">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Select Items: </td>
+                    <td>Enter Items: </td>
                     <td>
-                        <input type="text" name="items" placeholder="Enter Meal Items">
+                        <input formControlName="items" type="text" id="meal_items" class="form-control" placeholder="{{mealToUpdate.items}}">
                     </td>
                 </tr>
 
                 <tr>
                     <td>Allergies: </td>
                     <td>
-                        <input type="text" name="allergies" placeholder="Enter Meal Allergies">
+                        <input formControlName="allergies" type="text" id="meal_allergies" class="form-control" placeholder="{{mealToUpdate.allergies}}">
                     </td>
                 </tr>
 
                 <tr>
                     <td>Extras: </td>
                     <td>
-                        <input type="text" name="extras" placeholder="Enter Meal extras">
+                        <input formControlName="extras" type="text" id="meal_extras" class="form-control" placeholder="{{mealToUpdate.extras}}">
                     </td>
                 </tr>
 
@@ -65,18 +65,18 @@
 
                 <tr>
                     <td colspan="2">
-                        <input type="submit" name="submit" value="update Meal" class="btn-secondary">
+                        <input type="submit" name="submit"href="javascript:void(0)" (click)="updateMeal()" value="update Meal" class="btn-secondary">
                         <a href="javascript:void(0)" (click)="dashboardMeal()" class="btn-primary">Return</a>
                     </td>
                 </tr>
-            </div>
+           
         </table>
 
     </form>
     <footer>
         <div class="footer">
             <div class="wrapper">
-                <p class="text-center">Appetizing application - Rael Guimaraes</p>
+                <p class="text-center">Copyright © 2022 <a href="#">Appetizing</a>. All rights reserved.</p>
             </div>
         </div>
     </footer>

@@ -12,7 +12,9 @@ import { Order } from '../interface/order';
 export class DashboardOrderComponent implements OnInit {
 
   orderList: Order[] = [];
-  orderCopy: Order[] = [];
+ 
+  errorSign = false;
+  clicked = false;
 
   token: any = "";
   role: any = null;
@@ -50,11 +52,14 @@ export class DashboardOrderComponent implements OnInit {
       .subscribe(
         data => {
           this.orderList = data;
-          this.orderCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
         });
+  }
+
+  updateOrder(_id: string){
+    this.router.navigate(['dashboard-update-order', _id]);
   }
 
   httpDelete(url: string, request: any) {
@@ -64,9 +69,20 @@ export class DashboardOrderComponent implements OnInit {
     }));
   }
 
-  deleteOrder(data: Order) {
-    alert(JSON.stringify(data));
-    this.httpDelete("http://localhost:9000/order/", data);
+  deleteOrder(order: Order) {
+
+    let data = { id : order._id }
+    
+    this.httpDelete("https://appetizing.herokuapp.com/order/", data).pipe(first())
+    .subscribe(
+      data => {
+        this.errorSign = false;
+        alert('order deleted');
+      },
+      error => {
+        alert(JSON.stringify(error))
+        this.errorSign = true;
+      });
   }
 
   dashboardHome(){
@@ -108,8 +124,5 @@ export class DashboardOrderComponent implements OnInit {
     this.router.navigate(['dashboard-add-order']);
   }
 
-  updateOrder(){
-    this.router.navigate(['dashboard-update-order']);
-  }
 
 }

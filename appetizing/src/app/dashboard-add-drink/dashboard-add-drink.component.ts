@@ -43,7 +43,7 @@ export class DashboardAddDrinkComponent implements OnInit {
   httpPost(url: string, request: any) {
 
     const bearer = 'Bearer ' + localStorage.getItem('token');
-    alert(bearer)
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

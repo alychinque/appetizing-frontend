@@ -21,6 +21,7 @@ export class DashboardDrinksComponent implements OnInit {
   role: any = null;
   
   errorSign = false;
+  clicked = false;
 
   constructor(private router: Router, private http: HttpClient) {
   }
@@ -56,12 +57,14 @@ export class DashboardDrinksComponent implements OnInit {
       .subscribe(
         data => {
           this.drinkList = data;
-
-          this.drinkCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
         });
+  }
+
+  updateDrink(_id: string){
+    this.router.navigate(['dashboard-update-drink', _id]);
   }
 
   httpDelete(url: string, request: any) {
@@ -75,8 +78,7 @@ export class DashboardDrinksComponent implements OnInit {
 
     let data = { id : drink._id }
     
-    alert(JSON.stringify(data));
-    this.httpDelete("http://localhost:9000/drink/", data).pipe(first())
+    this.httpDelete("https://appetizing.herokuapp.com/drink/", data).pipe(first())
     .subscribe(
       data => {
         this.errorSign = false;
@@ -125,11 +127,6 @@ export class DashboardDrinksComponent implements OnInit {
 
   dashboardAddDrinks(){
     this.router.navigate(['dashboard-add-drink']);
-  }
-
-  updateDrink(drink: Drink){
-    alert(JSON.stringify(drink));
-    this.router.navigate(['dashboard-update-drink']);
   }
 
 }

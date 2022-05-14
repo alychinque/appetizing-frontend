@@ -61,12 +61,12 @@ const routes: Routes = [
   {path: 'dashboard-items' , component: DashboardItemsComponent},
   {path: 'dashboard-meal' , component: DashboardMealComponent},
   {path: 'dashboard-order' , component: DashboardOrderComponent},
-  {path: 'dashboard-update-admin' , component: DashboardUpdateAdminComponent},
-  {path: 'dashboard-update-allergy' , component: DashboardUpdateAllergyComponent},
+  {path: 'dashboard-update-admin/:id' , component: DashboardUpdateAdminComponent},
+  {path: 'dashboard-update-allergy/:id' , component: DashboardUpdateAllergyComponent},
   {path: 'dashboard-update-drink/:id' , component: DashboardUpdateDrinkComponent},
-  {path: 'dashboard-update-item' , component: DashboardUpdateItemComponent},
-  {path: 'dashboard-update-meal' , component: DashboardUpdateMealComponent},
-  {path: 'dashboard-update-order' , component: DashboardUpdateOrderComponent},
+  {path: 'dashboard-update-item/:id' , component: DashboardUpdateItemComponent},
+  {path: 'dashboard-update-meal/:id' , component: DashboardUpdateMealComponent},
+  {path: 'dashboard-update-order/:id' , component: DashboardUpdateOrderComponent},
   {path: 'dashboard-user' , component: DashboardUserComponent}
   
 

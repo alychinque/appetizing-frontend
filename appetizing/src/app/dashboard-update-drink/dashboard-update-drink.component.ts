@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, NgForm, AbstractControl, ValidatorFn } from '@angular/forms';
 import { first, map } from 'rxjs/operators';
 import { Drink } from '../interface/drink';
 
@@ -21,7 +21,7 @@ export class DashboardUpdateDrinkComponent implements OnInit {
   clicked = false;
   errorSign = false;
 
-  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder ) {
+  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private routerActivated: ActivatedRoute ) {
   }
 
   ngOnInit(): void {
@@ -35,11 +35,12 @@ export class DashboardUpdateDrinkComponent implements OnInit {
     }
 
     this.updateDrinkForm = new FormGroup({
-      name: new FormControl(this.drinkToUpdate?.nameDrink, [Validators.required]),
-      price: new FormControl(this.drinkToUpdate?.priceDrink, [Validators.required]),
-      category: new FormControl([this.drinkToUpdate?.category]),
-      status: new FormControl([this.drinkToUpdate?.status])
+      name: new FormControl(undefined, [Validators.required]),
+      price: new FormControl(undefined, [Validators.required]),
+      category: new FormControl([undefined]),
+      status: new FormControl([undefined])
     })
+
   }
 
   httpUpdate(url: string, request: any) {
@@ -62,21 +63,20 @@ export class DashboardUpdateDrinkComponent implements OnInit {
       this.clicked = true;
 
       let data = {
-        name: this.updateDrinkForm.controls['name'].value,
-        price: this.updateDrinkForm.controls['price'].value,
+        nameDrink: this.updateDrinkForm.controls['name'].value,
+        priceDrink: this.updateDrinkForm.controls['price'].value,
         category: this.updateDrinkForm.controls['category'].value,
-        status: this.updateDrinkForm.controls['status'].value
+        active: this.updateDrinkForm.controls['status'].value
       };
 
-     alert(this.updateDrinkForm.controls['status'].value)
-
-      this.httpUpdate("http://localhost:9000/drink", data).pipe(first())
+      this.httpUpdate("https://appetizing.herokuapp.com/drink", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;
             alert('drink updated');
           },
           error => {
+            alert(JSON.stringify(error));
             this.errorSign = true;
             this.clicked = false;
           });
@@ -84,6 +84,30 @@ export class DashboardUpdateDrinkComponent implements OnInit {
     else {
       alert("Fill the fields!");
     }
+  }
+
+  httpGet(url: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+      })
+    };
+
+    return this.http.get<any>(url, httpOptions).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getDrink(id: string) {
+    this.httpGet("https://appetizing.herokuapp.com/drink/".concat(id))
+      .subscribe(
+        data => {
+          this.drinkToUpdate = data;  
+        },
+        error => {
+          alert(JSON.stringify(error));
+        });
   }
 
   dashboardDrinks(){

@@ -12,7 +12,9 @@ import { Meal } from '../interface/meal';
 export class DashboardMealComponent implements OnInit {
 
   mealList: Meal[] = [];
-  mealCopy: Meal[] = [];
+
+  errorSign = false;
+  clicked = false;
 
   token: any = "";
   role: any = null;
@@ -50,11 +52,14 @@ export class DashboardMealComponent implements OnInit {
       .subscribe(
         data => {
           this.mealList = data;
-          this.mealCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
         });
+  }
+
+  updateMeal(_id: string){
+    this.router.navigate(['dashboard-update-meal', _id]);
   }
 
   httpDelete(url: string, request: any) {
@@ -64,9 +69,20 @@ export class DashboardMealComponent implements OnInit {
     }));
   }
 
-  deleteMeal(data: Meal) {
-    alert(JSON.stringify(data));
-    this.httpDelete("http://localhost:9000/meal/", data);
+  deleteMeal(meal: Meal) {
+
+    let data = { id : meal._id }
+    
+    this.httpDelete("https://appetizing.herokuapp.com/meal/", data).pipe(first())
+    .subscribe(
+      data => {
+        this.errorSign = false;
+        alert('meal deleted');
+      },
+      error => {
+        alert(JSON.stringify(error))
+        this.errorSign = true;
+      });
   }
 
   dashboardHome(){
@@ -108,7 +124,4 @@ export class DashboardMealComponent implements OnInit {
     this.router.navigate(['dashboard-add-meal']);
   }
 
-  updateMeal(){
-    this.router.navigate(['dashboard-update-meal']);
-  }
 }
