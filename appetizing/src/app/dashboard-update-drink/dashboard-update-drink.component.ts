@@ -15,7 +15,8 @@ export class DashboardUpdateDrinkComponent implements OnInit {
   token: any = "";
   role: any = null;
 
-  drinkToUpdate: Drink | undefined;
+  drinkToUpdate: any;
+  drinkId: any;
   
   updateDrinkForm: any;
   clicked = false;
@@ -33,6 +34,10 @@ export class DashboardUpdateDrinkComponent implements OnInit {
       alert("This page is restricted.")
       this.router.navigate(['home']);
     }
+
+    this.routerActivated.params.subscribe( params => this.drinkId = params['id']);
+
+    this.getDrink(this.drinkId);
 
     this.updateDrinkForm = new FormGroup({
       name: new FormControl(undefined, [Validators.required]),

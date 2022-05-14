@@ -14,8 +14,15 @@ export class DashboardUpdateAdminComponent implements OnInit {
 
   token: any = "";
   role: any = null;
+
+  adminToUpdate: any;
+  adminId: any;
   
-  constructor(private router: Router) {
+  updateAdminForm: any;
+  clicked = false;
+  errorSign = false;
+  
+  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder, private routerActivated: ActivatedRoute ) {
   }
 
   ngOnInit(): void {
@@ -27,9 +34,83 @@ export class DashboardUpdateAdminComponent implements OnInit {
       alert("This page is restricted.")
       this.router.navigate(['home']);
     }
+
+    this.routerActivated.params.subscribe( params => this.adminId = params['id']);
+
+    this.getAdmin(this.adminId);
+
+    this.updateAdminForm = new FormGroup({
+      fullName: new FormControl(undefined, [Validators.required]),
+      username: new FormControl(undefined, [Validators.required]),
+      password: new FormControl([undefined, [Validators.required, Validators.minLength(6), Validators.minLength(60)]])
+    })
   }
 
+  httpUpdate(url: string, request: any) {
 
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    };
+
+    return this.http.put<any>(url, request, httpOptions).pipe(map((data) => {
+      return data;
+    }));
+  }
+
+  updateAdmin() {
+    if (this.updateAdminForm.valid) {
+
+      this.clicked = true;
+
+      let data = {
+        fullName: this.updateAdminForm.controls['fullName'].value,
+        username: this.updateAdminForm.controls['username'].value,
+        password: this.updateAdminForm.controls['password'].value
+      };
+
+      this.httpUpdate("https://appetizing.herokuapp.com/admin", data).pipe(first())
+        .subscribe(
+          data => {
+            this.errorSign = false;
+            alert('admin updated');
+          },
+          error => {
+            alert(JSON.stringify(error));
+            this.errorSign = true;
+            this.clicked = false;
+          });
+    }
+    else {
+      alert("Fill the fields!");
+    }
+  }
+
+  httpGet(url: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+      })
+    };
+
+    return this.http.get<any>(url, httpOptions).pipe(map(data => {
+      return data;
+    }));
+  }
+
+  getAdmin(id: string) {
+    this.httpGet("https://appetizing.herokuapp.com/admin/".concat(id))
+      .subscribe(
+        data => {
+          this.adminToUpdate = data;  
+        },
+        error => {
+          alert(JSON.stringify(error));
+        });
+  }
 
   dashboardAdmin(){
     this.router.navigate(['dashboard-admin']);
