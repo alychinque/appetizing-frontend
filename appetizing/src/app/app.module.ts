@@ -18,7 +18,6 @@ import { DashboardAddAdminComponent } from './dashboard-add-admin/dashboard-add-
 import { DashboardAddDrinkComponent } from './dashboard-add-drink/dashboard-add-drink.component';
 import { DashboardAddItemComponent } from './dashboard-add-item/dashboard-add-item.component';
 import { DashboardAddMealComponent } from './dashboard-add-meal/dashboard-add-meal.component';
-import { DashboardAddOrderComponent } from './dashboard-add-order/dashboard-add-order.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { DashboardDrinksComponent } from './dashboard-drinks/dashboard-drinks.component';
 import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
@@ -55,7 +54,6 @@ const routes: Routes = [
   {path: 'dashboard-add-drink' , component: DashboardAddDrinkComponent},
   {path: 'dashboard-add-item' , component: DashboardAddItemComponent},
   {path: 'dashboard-add-meal' , component: DashboardAddMealComponent},
-  {path: 'dashboard-add-order' , component: DashboardAddOrderComponent},
   {path: 'dashboard-admin' , component: DashboardAdminComponent},
   {path: 'dashboard-allergy' , component: DashboardAllergyComponent},
   {path: 'dashboard-drinks' , component: DashboardDrinksComponent},
@@ -65,7 +63,7 @@ const routes: Routes = [
   {path: 'dashboard-order' , component: DashboardOrderComponent},
   {path: 'dashboard-update-admin' , component: DashboardUpdateAdminComponent},
   {path: 'dashboard-update-allergy' , component: DashboardUpdateAllergyComponent},
-  {path: 'dashboard-update-drink' , component: DashboardUpdateDrinkComponent},
+  {path: 'dashboard-update-drink/:id' , component: DashboardUpdateDrinkComponent},
   {path: 'dashboard-update-item' , component: DashboardUpdateItemComponent},
   {path: 'dashboard-update-meal' , component: DashboardUpdateMealComponent},
   {path: 'dashboard-update-order' , component: DashboardUpdateOrderComponent},
@@ -88,7 +86,6 @@ const routes: Routes = [
     DashboardAddDrinkComponent,
     DashboardAddItemComponent,
     DashboardAddMealComponent,
-    DashboardAddOrderComponent,
     DashboardAdminComponent,
     DashboardAllergyComponent,
     DashboardDrinksComponent,

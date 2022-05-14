@@ -4,4 +4,5 @@ export interface Drink {
     quantity: number;
     priceDrink: number;
     category: string;
+    status: Boolean;
   }

@@ -22,8 +22,8 @@ export class DashboardAddItemComponent implements OnInit {
 
     this.addItemForm = new FormGroup({
       name: new FormControl(undefined, [Validators.required]),
-      price: new FormControl(undefined, [Validators.required]),
-      status: new FormControl([undefined])
+      price: new FormControl(undefined, [Validators.required])
+     
     })
   }
 
@@ -47,20 +47,19 @@ export class DashboardAddItemComponent implements OnInit {
       this.clicked = true;
 
       let data = {
-        name: this.addItemForm.controls['name'].value,
-        price: this.addItemForm.controls['price'].value,
-        status: this.addItemForm.controls['status'].value
+        nameItem: this.addItemForm.controls['name'].value,
+        priceItem: this.addItemForm.controls['price'].value
+       
       };
-
-      alert('next alert will be showing the json struct');
-      alert(JSON.stringify(data));
 
       this.httpPost("http://localhost:9000/item/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;
+            alert('item added');
           },
           error => {
+            alert(JSON.stringify(error))
             this.errorSign = true;
             this.clicked = false;
           });

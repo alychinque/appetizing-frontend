@@ -39,6 +39,7 @@ export class DashboardAddAllergyComponent implements OnInit {
       return data;
     }));
   }
+  
 
   addAllergy() {
     if (this.addAllergyForm.valid) {
@@ -46,19 +47,18 @@ export class DashboardAddAllergyComponent implements OnInit {
       this.clicked = true;
 
       let data = {
-        allergyName: this.addAllergyForm.controls['allergyName'].value,
-        allergyNumber: this.addAllergyForm.controls['allergyNumber'].value,
+        nameAllergy: this.addAllergyForm.controls['allergyName'].value,
+        numberAllergy: this.addAllergyForm.controls['allergyNumber'].value,
       };
-
-      alert('next alert will be showing the json struct');
-      alert(JSON.stringify(data));
 
       this.httpPost("http://localhost:9000/allergy/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;
+            alert('allergy added');
           },
           error => {
+            alert(JSON.stringify(error))
             this.errorSign = true;
             this.clicked = false;
           });

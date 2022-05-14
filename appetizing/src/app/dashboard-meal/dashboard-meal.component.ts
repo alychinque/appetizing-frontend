@@ -11,7 +11,7 @@ import { Meal } from '../interface/meal';
 })
 export class DashboardMealComponent implements OnInit {
 
-  meal: Meal[] = [];
+  mealList: Meal[] = [];
   mealCopy: Meal[] = [];
 
   constructor(private router: Router, private http: HttpClient) {
@@ -38,12 +38,24 @@ export class DashboardMealComponent implements OnInit {
     this.httpGet("https://appetizing.herokuapp.com/meal")
       .subscribe(
         data => {
-          this.meal = data;
+          this.mealList = data;
           this.mealCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
         });
+  }
+
+  httpDelete(url: string, request: any) {
+
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
+
+  deleteMeal(data: Meal) {
+    alert(JSON.stringify(data));
+    this.httpDelete("http://localhost:9000/meal/", data);
   }
 
   dashboardHome(){

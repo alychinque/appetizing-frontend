@@ -5,6 +5,7 @@ import { map, first } from 'rxjs/operators';
 import { Drink } from '../interface/drink';
 
 
+
 @Component({
   selector: 'app-dashboard-drinks',
   templateUrl: './dashboard-drinks.component.html',
@@ -12,8 +13,10 @@ import { Drink } from '../interface/drink';
 })
 export class DashboardDrinksComponent implements OnInit {
 
-  drink: Drink[] = [];
+  drinkList: Drink[] = [];
   drinkCopy: Drink[] = [];
+
+  errorSign = false;
 
   constructor(private router: Router, private http: HttpClient) {
   }
@@ -35,25 +38,12 @@ export class DashboardDrinksComponent implements OnInit {
     }));
   }
 
-  httpDelete(url: string, request: any) {
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      })
-    };
-
-    return this.http.delete<any>(url, request).pipe(map((data) => {
-      return data;
-    }));
-  }
-
   getDrink() {
     this.httpGet("https://appetizing.herokuapp.com/drink")
       .subscribe(
         data => {
-          this.drink = data;
+          this.drinkList = data;
+
           this.drinkCopy = data;
         },
         error => {
@@ -61,8 +51,28 @@ export class DashboardDrinksComponent implements OnInit {
         });
   }
 
-  deleteDrink(data: Drink) {
-    this.httpDelete("http://localhost:9000/drink/", data);
+  httpDelete(url: string, request: any) {
+
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
+
+  deleteDrink(drink: Drink) {
+
+    let data = { id : drink._id }
+    
+    alert(JSON.stringify(data));
+    this.httpDelete("http://localhost:9000/drink/", data).pipe(first())
+    .subscribe(
+      data => {
+        this.errorSign = false;
+        alert('drink deleted');
+      },
+      error => {
+        alert(JSON.stringify(error))
+        this.errorSign = true;
+      });
   }
 
   dashboardHome(){
@@ -104,7 +114,8 @@ export class DashboardDrinksComponent implements OnInit {
     this.router.navigate(['dashboard-add-drink']);
   }
 
-  updateDrink(){
+  updateDrink(drink: Drink){
+    alert(JSON.stringify(drink));
     this.router.navigate(['dashboard-update-drink']);
   }
 

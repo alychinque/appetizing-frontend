@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage</title>
-   
+
 </head>
 
 <body>
@@ -25,37 +25,36 @@
                 <li><a href="javascript:void(0)" (click)="dashboardMeal()">Meal</a></li>
                 <li><a href="javascript:void(0)" (click)="dashboardOrder()">Order</a></li>
                 <li><a href="javascript:void(0)" (click)="dashboardUser()">Users</a></li>
-                
+
             </ul>
         </div>
     </div>
 
     <a href="javascript:void(0)" (click)="addItem()" class="btn-primary">Add Item</a>
+    <div *ngFor="let item of itemList">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
 
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        <div *ngFor="let item">
             <tr>
                 <td>{{item.nameItem}}</td>
                 <td>{{item.priceItem}}</td>
-                <td>{{item}}</td>
                 <td>
                     <a href="javascript:void(0)" (click)="updateItem()" class="btn-secondary">Update Item</a>
                     <a href="" class="btn-danger">Delete Item</a>
                 </td>
             </tr>
-        </div>
-    </table>
 
+        </table>
+    </div>
     <footer>
         <div class="footer">
             <div class="wrapper">
-                <p class="text-center">Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights reserved.</p>
+                <p class="text-center">Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights
+                    reserved.</p>
             </div>
         </div>
     </footer>

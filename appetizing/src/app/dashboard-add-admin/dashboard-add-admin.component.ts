@@ -52,8 +52,6 @@ export class DashboardAddAdminComponent implements OnInit {
         password: this.addAdminForm.controls['password'].value
       };
 
-      alert('next alert will be showing the json struct');
-      alert(JSON.stringify(data));
 
       this.httpPost("http://localhost:9000/admin/", data).pipe(first())
         .subscribe(
@@ -69,7 +67,6 @@ export class DashboardAddAdminComponent implements OnInit {
       alert("Fill the fields!");
     }
   }
-
 
   dashboardAdmin() {
     this.router.navigate(['dashboard-admin']);

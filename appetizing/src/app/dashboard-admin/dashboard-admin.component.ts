@@ -11,7 +11,7 @@ import { Admin } from '../interface/admin';
 })
 export class DashboardAdminComponent implements OnInit {
 
-  admin: Admin[] = [];
+  adminList: Admin[] = [];
   adminCopy: Admin[] = [];
 
   constructor(private router: Router, private http: HttpClient) {
@@ -38,12 +38,24 @@ export class DashboardAdminComponent implements OnInit {
     this.httpGet("https://appetizing.herokuapp.com/admin")
       .subscribe(
         data => {
-          this.admin = data;
+          this.adminList = data;
           this.adminCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
         });
+  }
+
+  httpDelete(url: string, request: any) {
+
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
+
+  deleteAdmin(data: Admin) {
+    alert(JSON.stringify(data));
+    this.httpDelete("http://localhost:9000/admin/", data);
   }
 
   dashboardHome(){

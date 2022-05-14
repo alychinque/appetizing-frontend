@@ -12,7 +12,7 @@ import { User } from '../interface/user';
 })
 export class DashboardUserComponent implements OnInit {
 
-  user: User[] = [];
+  userList: User[] = [];
   userCopy: User[] = [];
 
    constructor(private router: Router, private http: HttpClient) {
@@ -39,12 +39,24 @@ export class DashboardUserComponent implements OnInit {
     this.httpGet("https://appetizing.herokuapp.com/user")
       .subscribe(
         data => {
-          this.user = data;
+          this.userList = data;
           this.userCopy = data;
         },
         error => {
           alert(JSON.stringify(error));
         });
+  }
+
+  httpDelete(url: string, request: any) {
+
+    return this.http.delete<any>(url, request).pipe(map((data) => {
+      return data;
+    }));
+  }
+
+  deleteUser(data: User) {
+    alert(JSON.stringify(data));
+    this.httpDelete("http://localhost:9000/user/", data);
   }
 
   dashboardHome(){
