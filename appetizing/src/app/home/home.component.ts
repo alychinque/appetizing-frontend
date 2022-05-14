@@ -19,6 +19,9 @@ export class HomeComponent implements OnInit {
     //loader
     loader = false;
 
+    userLogged = false;
+    userLogouting = false;
+
   ngOnInit(): void {
 
     if(localStorage.getItem('cart') != null){
@@ -38,6 +41,14 @@ export class HomeComponent implements OnInit {
       {
         this.sum();
       }
+    }
+
+    if(localStorage.getItem('token') != null)
+    {
+      this.userLogged = true;
+    }
+    else{
+      this.userLogged = false;
     }
   }
 
@@ -78,6 +89,18 @@ checkout(){
   this.loader = true;
   setTimeout(()=>{                 
     this.router.navigate(['checkout']);
+}, 1500);  
+}
+
+logout(){
+
+  this.userLogouting = true;
+
+  setTimeout(()=>{            
+    this.userLogged = false;     
+    this.userLogouting = false;
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
 }, 1500);  
 }
 

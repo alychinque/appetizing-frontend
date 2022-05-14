@@ -47,18 +47,18 @@ export class LoginComponent implements OnInit {
 
     const httpOptions = {
       headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-         })};
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    };
 
     return this.http.post<any>(url, request, httpOptions).pipe(map((data) => {
       return data;
     }));
   }
 
-  login()
-  {
-    
+  login() {
+
     if (this.loginForm.valid) {
 
       this.errorCred = false;
@@ -70,18 +70,34 @@ export class LoginComponent implements OnInit {
       this.httpPost("https://appetizing.herokuapp.com/login/", data).pipe(first())
         .subscribe(
           data => {
+
             this.errorLogin = false;
-            alert(JSON.stringify(data))
+            if (data.roles.Admin == 3030) {
+              setTimeout(() => {
+                this.router.navigate(['dashboard-home']);
+              }, 1500);
+              localStorage.setItem('role', "3030");
+            }
+            else if (data.roles.Staff == 2020) {
+              setTimeout(() => {
+                this.router.navigate(['dashboard-home']);
+              }, 1500);
+              localStorage.setItem('role', "2020");
+            }
+            else if (data.roles.Customer == 1010) {
+              setTimeout(() => {
+                this.router.navigate(['home']);
+              }, 1500);
+              localStorage.setItem('role', "1010");
+            }
+            localStorage.setItem('token', data.accessToken);
+
           },
           error => {
 
-            alert(JSON.stringify(error))
             this.clicked = false;
 
-            if(error.error.message == "Unauthorized not foundUser." || error.error.message == "Unauthorized password did not match."  || error.error.message == "Unauthorized")
-            {
-              this.errorCred = true;
-            }
+            this.errorCred = true;
 
           });
     }
@@ -90,17 +106,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  recovery()
-  {
+  recovery() {
     alert('Coming soon...')
   }
 
-  signup()
-  {
+  signup() {
     this.loader = true;
-    setTimeout(()=>{                 
+    setTimeout(() => {
       this.router.navigate(['signup']);
-  }, 1500);  
+    }, 1500);
   }
 
 }

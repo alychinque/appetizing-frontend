@@ -16,12 +16,25 @@ export class DashboardDrinksComponent implements OnInit {
   drinkList: Drink[] = [];
   drinkCopy: Drink[] = [];
 
+
+  token: any = "";
+  role: any = null;
+  
   errorSign = false;
 
   constructor(private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem('role');
+    this.token = localStorage.getItem('token');
+
+    if(this.role == 1010)
+    {
+      alert("This page is restricted.")
+      this.router.navigate(['home']);
+    }
+
     this.getDrink();
   }
 

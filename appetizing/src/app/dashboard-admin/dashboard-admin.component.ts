@@ -14,10 +14,22 @@ export class DashboardAdminComponent implements OnInit {
   adminList: Admin[] = [];
   adminCopy: Admin[] = [];
 
+  token: any = "";
+  role: any = null;
+
   constructor(private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem('role');
+    this.token = localStorage.getItem('token');
+
+    if(this.role == 1010)
+    {
+      alert("This page is restricted.")
+      this.router.navigate(['home']);
+    }
+
     this.getAdmin();
   }
 

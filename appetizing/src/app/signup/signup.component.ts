@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
     //instance the login form and set the validators
     this.loginForm = new FormGroup({
       email: new FormControl(undefined, [Validators.required, Validators.email, Validators.maxLength(60)]),
-      name: new FormControl(undefined, [Validators.required,  Validators.minLength(8), Validators.maxLength(60)]),
+      name: new FormControl(undefined, [Validators.required,  Validators.minLength(2), Validators.maxLength(60)]),
       phone: new FormControl(undefined, [Validators.required]),
       password: new FormControl(undefined, [Validators.required]),
       confirm_password: new FormControl(undefined, [Validators.required])

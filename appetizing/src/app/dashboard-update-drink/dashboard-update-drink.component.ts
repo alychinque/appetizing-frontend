@@ -12,6 +12,9 @@ import { Drink } from '../interface/drink';
 })
 export class DashboardUpdateDrinkComponent implements OnInit {
 
+  token: any = "";
+  role: any = null;
+
   drinkToUpdate: Drink | undefined;
   
   updateDrinkForm: any;
@@ -22,6 +25,15 @@ export class DashboardUpdateDrinkComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem('role');
+    this.token = localStorage.getItem('token');
+
+    if(this.role == 1010)
+    {
+      alert("This page is restricted.")
+      this.router.navigate(['home']);
+    }
+
     this.updateDrinkForm = new FormGroup({
       name: new FormControl(this.drinkToUpdate?.nameDrink, [Validators.required]),
       price: new FormControl(this.drinkToUpdate?.priceDrink, [Validators.required]),

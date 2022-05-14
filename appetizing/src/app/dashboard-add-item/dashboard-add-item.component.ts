@@ -15,10 +15,22 @@ export class DashboardAddItemComponent implements OnInit {
   clicked = false;
   errorSign = false;
 
+  token: any = "";
+  role: any = null;
+
   constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
+
+    this.role = localStorage.getItem('role');
+    this.token = localStorage.getItem('token');
+
+    if(this.role == 1010)
+    {
+      alert("This page is restricted.")
+      this.router.navigate(['home']);
+    }
 
     this.addItemForm = new FormGroup({
       name: new FormControl(undefined, [Validators.required]),

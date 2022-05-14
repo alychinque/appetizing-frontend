@@ -14,6 +14,9 @@ export class DashboardAllergyComponent implements OnInit {
   allergyList: Allergy[] = [];
   allergyCopy: Allergy[] = [];
 
+  token: any = "";
+  role: any = null;
+
   allergyTodelete: Allergy[] = [];
   errorSign = false;
   clicked = false;
@@ -22,6 +25,15 @@ export class DashboardAllergyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.role = localStorage.getItem('role');
+    this.token = localStorage.getItem('token');
+
+    if(this.role == 1010)
+    {
+      alert("This page is restricted.")
+      this.router.navigate(['home']);
+    }
+
     this.getAllergy();
   }
 

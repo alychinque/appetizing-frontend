@@ -14,7 +14,18 @@ export class DashboardMealComponent implements OnInit {
   mealList: Meal[] = [];
   mealCopy: Meal[] = [];
 
+  token: any = "";
+  role: any = null;
+
   constructor(private router: Router, private http: HttpClient) {
+    this.role = localStorage.getItem('role');
+    this.token = localStorage.getItem('token');
+
+    if(this.role == 1010)
+    {
+      alert("This page is restricted.")
+      this.router.navigate(['home']);
+    }
   }
 
   ngOnInit(): void {
