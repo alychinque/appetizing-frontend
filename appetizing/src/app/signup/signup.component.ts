@@ -81,7 +81,7 @@ export class SignupComponent implements OnInit {
           phone: phoneArray.e164Number
          };
   
-        this.httpPost("http://localhost:9000/register/", data).pipe(first())
+        this.httpPost("https://appetizing.herokuapp.com/register/", data).pipe(first())
           .subscribe(
             data => {
               this.errorSign = false;

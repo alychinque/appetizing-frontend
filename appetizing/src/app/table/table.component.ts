@@ -10,6 +10,8 @@ export class TableComponent implements OnInit {
 
   table: any;
 
+  selected: boolean = false;
+
   constructor(private routerActivated: ActivatedRoute, private router: Router) {
   }
 
@@ -20,7 +22,12 @@ export class TableComponent implements OnInit {
 
     localStorage.setItem('table',this.table);
 
-    this.router.navigate(['home']);
+    setTimeout(()=>{      
+         this.selected = true;
+         setTimeout(()=>{      
+        this.router.navigate(['home']);
+   }, 2000); 
+  }, 3000);  
 
   }
 

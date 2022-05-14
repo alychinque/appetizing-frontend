@@ -142,7 +142,7 @@ loader = false;
       headers: new HttpHeaders({
         'Content-Type': 'application/json; charset=utf-8',
         'Accept': 'application/json',
-      }),
+      })
     };
 
     return this.http.get<any>(url, httpOptions).pipe(map(data => {
@@ -199,7 +199,7 @@ loader = false;
  }
  
  foodOrDrink(id:string) {
-   this.loader = true;
+   //this.loader = true;
    setTimeout(()=>{                 
      this.router.navigate(['food', id]);
  }, 1500);  

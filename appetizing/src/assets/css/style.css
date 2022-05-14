@@ -1,44 +1,5 @@
-/*--------------------------------------------------------------------------
-Template name: Foodor
-Template URI: https://foodor.netlify.com
-Author Name: Tortoiz
-Author URI: 
-Tag: Restaurants, Food, Hotel, Food Business
-Verson: 1.0.0
-Description: Foodor is a responsive html5 bootstrap5 Restaurants Template    
-
-===========================
-CSS Index
-===========================
-
-01. Header Area
-02. Hero Banner Area 
-03. Features Area
-04. Order Step
-05. Foods Tabs Area
-06. Call To Action Area
-07. Popular Items
-08. Clients Reviews Carousel
-09. Apps Features Area
-10. Subscribe Area
-11. Footer Area
-12. About Us Page
-13. Services Page
-14. Menu Page
-15. Product Details Page
-16. Blog Details
-17. Checkout 
-18. Track Order
-19. Account 
-20. Login Page
-
-
-
-------------------------------------------------------------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700;900&amp;display=swap");
-/*******************
-Heading
-********************/
+
 body {
   font-family: "Inter", sans-serif;
   font-size: 15px;
@@ -53,6 +14,10 @@ h4,
 h5,
 h6 {
   color: #0c0f2e; }
+
+  header{
+      margin-top: 10%;
+  }
 
 @media (min-width: 1285px) {
   .container {

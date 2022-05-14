@@ -54,10 +54,7 @@ export class DashboardAddDrinkComponent implements OnInit {
         status: this.addDrinkForm.controls['status'].value
       };
 
-      alert('next alert will be showing the json struct');
-      alert(JSON.stringify(data));
-
-      this.httpPost("http://localhost:9000/drink", data).pipe(first())
+      this.httpPost("https://appetizing.herokuapp.com/drink/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;
@@ -66,6 +63,7 @@ export class DashboardAddDrinkComponent implements OnInit {
           error => {
             this.errorSign = true;
             this.clicked = false;
+            alert(JSON.stringify(error));
           });
     }
     else {

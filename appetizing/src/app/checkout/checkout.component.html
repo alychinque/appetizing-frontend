@@ -1,48 +1,50 @@
-<div class="primary-navigation sticky-header">
-        <div class="container">
-            <nav class="navbar navbar-expand-md  navbar-light">
-                <!-- logo <a class="navbar-brand pl-5" href="index-2.html"><img src="assets/images/logo.png" alt="BrandNav"></a> -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index-2.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="menu.html">Menu</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Pages
-                                <i class="fas fa-angle-down"></i>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="register.html">Sign Up</a></li>
-                                <li><a class="dropdown-item" href="account.html">Account</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                        <li class="nav-item login-item">
-                            <a class="nav-link" href="login.html"><i class="far fa-user"></i>
-                                Login</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
+<div *ngIf="loader" id="preloader">
+    <div class="preloader">
+        <span></span>
+        <span></span>
     </div>
+</div>
 
-    <!-- Start Page Header -->
-    <div class="page-header-wrapper">
-        <div class="page-header-2">
+<header class="header">
+        <div class="primary-navigation sticky-header">
+            <div class="container">
+                <nav class="navbar navbar-expand-md  navbar-light">
+                    <a class="navbar-brand pl-5" href="javascript:void(0)" (click)="home()"><img src="../../assets/images/logo.png" alt="BrandNav"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="home()">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="foodOrDrink('0')">Meals</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="foodOrDrink('1')">Drinks</a>
+                            </li>
+                            <li class="nav-item login-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="login()"><i class="far fa-user"></i>
+                                    Login</a>
+                            </li>
+                            <li class="nav-item login-item">
+                                <a class="nav-link" href="javascript:void(0)" (click)="signup()">
+                                    Sign Up</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header-wrapper" style="background-image:url(assets/images/header_bg_01.jpg);">
+        <div class="page-header-2" style="background-image:url(assets/images/header_bg_02.png);">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 mx-auto text-center">
@@ -56,84 +58,166 @@
             </div>
         </div>
     </div>
-    <!-- End Page Header -->
 
-<!-- Start Features Area -->
-<div class="features-area section-pt">
-    <div class="container">
-        <div class="row">
-                <div class="sidebar-wrapper-2">
-                    <div class="pricing-widget p-4 custom-border">
-                        <div class="widget-body pt-3">
-                            <div class="pricing-form">
-                                <form action="#">
-                                    <div  *ngFor="let meal of cartMeal" class="single-pricing d-flex justify-content-between">
-                                        <div class="title">
-                                            <p><i class="far fa-stop-circle"></i> {{meal.nameMeal}}</p>
-                                        </div>
-                                        <div class="pricing-info">
-                                            <p class="price">${{meal.priceMeal}}</p>
-                                            <a href="javascript:void(0)" (click)="deleteItem(meal._id)" class="delete-btn"><i class="far fa-trash-alt"></i></a>
-                                        </div>
+        <div class="features-area section-pt">
+            <div class="container">
+                <div class="row">
+                        <div class="sidebar-wrapper-2">
+                            <div class="pricing-widget p-4 custom-border">
+                                <div class="widget-body pt-3">
+                                    <div class="pricing-form">
+                                        <form action="#">
+                                            <div  *ngFor="let meal of cartMeal" class="single-pricing d-flex justify-content-between">
+                                                <div class="title">
+                                                    <p><i class="far fa-stop-circle"></i> {{meal.nameMeal}}</p>
+                                                </div>
+                                                <div class="pricing-info">
+                                                    <p class="price">€{{meal.priceMeal}}</p>
+                                                    <a href="javascript:void(0)" (click)="deleteItem(meal._id)" class="delete-btn"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </div>
+                                            <div *ngFor="let drink of cartDrink" class="single-pricing d-flex justify-content-between">
+                                                <div class="title">
+                                                    <p><i class="far fa-stop-circle"></i> {{drink.nameDrink}}</p>
+                                                </div>
+                                                <div class="pricing-info">
+                                                    <p class="price">${{drink.priceDrink}}</p>
+                                                    <a href="javascript:void(0)" (click)="deleteItemDrink(drink._id)" class="delete-btn"><i class="far fa-trash-alt"></i></a>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div *ngFor="let drink of cartDrink" class="single-pricing d-flex justify-content-between">
-                                        <div class="title">
-                                            <p><i class="far fa-stop-circle"></i> {{drink.nameDrink}}</p>
-                                        </div>
-                                        <div class="pricing-info">
-                                            <p class="price">${{drink.priceDrink}}</p>
-                                            <a href="javascript:void(0)" (click)="deleteItemDrink(drink._id)" class="delete-btn"><i class="far fa-trash-alt"></i></a>
-                                        </div>
+                                    <div class="pay-form mt-4">
+                                        <form [formGroup]="checkoutForm" >
+                                            <div class="pay-list">
+                                                <ul>
+                                                    <li><span>Item Total</span> <span>€{{totalPrice}}</span></li>
+                                                </ul>
+                                            </div>
+                                            <div  *ngIf="table != -1" class="pay-list">
+                                                <ul>
+                                                    <li><span>Table Selected</span> <span>{{table}}</span></li>
+                                                </ul>
+                                            </div>
+                                            <select *ngIf="table == -1"  formControlName="table" class="form-select" aria-label="Default select example">
+                                                <option selected>SELECT THE TABLE</option>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                                <option value="6">06</option>
+                                                <option value="7">07</option>
+                                                <option value="8">08</option>
+                                                <option value="9">09</option>
+                                                <option value="10">10</option>
+                                              </select>
+                                            <button *ngIf="!submitted" type="submit" (click)="pay()" class="btn-default w-100 mt-5">Pay €{{totalPrice}}</button>
+                                            <button *ngIf="submitted" type="submit" (click)="pay()" class="btn-default w-100 mt-5"><div class="d-flex justify-content-center">
+                                                <div class="spinner-border" role="status">
+                                                  <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                              </div></button>
+                                        </form>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                            <div class="pay-form mt-4">
-                                <form [formGroup]="checkoutForm" >
-                                    <div class="pay-list">
-                                        <ul>
-                                            <li><span>Item Total</span> <span>${{totalPrice}}</span></li>
-                                        </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer-wrapper">
+            <div class="footer-area py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6 mb-sm-5 mb-lg-0 mb-xs-5">
+                            <div class="footer-widget">
+                                <div class="footer-logo">
+                                    <a href="javascript:void(0)" class="d-inline-block mb-3"><img src="../../assets/images/logo.png"
+                                            alt="logo" class="img-fluid" /></a>
+                                </div>
+                                <p class="text-white">Follow us on social media</p>
+                                <div class="social-profiles">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-xs-5">
+                            <div class="footer-widget">
+    
+                                <h3 class="widget-title">Instagram Gallery</h3>
+                                <div class="photos-gallery">
+                                    <div class="single-gallery">
+                                        <a href="javascript:void(0)"><img src="../../assets/images/gallery/01.jpg" alt="gallery 01"
+                                                class="img-fluid" /></a>
                                     </div>
-                                    <div  *ngIf="table != -1" class="pay-list">
-                                        <ul>
-                                            <li><span>Table Selected</span> <span>{{table}}</span></li>
-                                        </ul>
+                                    <div class="single-gallery">
+                                        <a href="javascript:void(0)"><img src="../../assets/images/gallery/02.jpg" alt="gallery 01"
+                                                class="img-fluid" /></a>
                                     </div>
-                                    <select *ngIf="table == -1"  formControlName="table" class="form-select" aria-label="Default select example">
-                                        <option selected>SELECT THE TABLE</option>
-                                        <option value="1">01</option>
-                                        <option value="2">02</option>
-                                        <option value="3">03</option>
-                                        <option value="4">04</option>
-                                        <option value="5">05</option>
-                                        <option value="6">06</option>
-                                        <option value="7">07</option>
-                                        <option value="8">08</option>
-                                        <option value="9">09</option>
-                                        <option value="10">10</option>
-                                      </select>
-                                    <button type="submit" (click)="pay()" class="btn-default w-100 mt-5">Pay ${{totalPrice}}</button>
-                                </form>
+                                    <div class="single-gallery">
+                                        <a href="javascript:void(0)"><img src="../../assets/images/gallery/03.jpg" alt="gallery 01"
+                                                class="img-fluid" /></a>
+                                    </div>
+                                    <div class="single-gallery">
+                                        <a href="javascript:void(0)"><img src="../../assets/images/gallery/04.jpg" alt="gallery 01"
+                                                class="img-fluid" /></a>
+                                    </div>
+                                    <div class="single-gallery">
+                                        <a href="javascript:void(0)"><img src="../../assets/images/gallery/05.jpg" alt="gallery 01"
+                                                class="img-fluid" /></a>
+                                    </div>
+                                    <div class="single-gallery">
+                                        <a href="javascript:void(0)"><img src="../../assets/images/gallery/06.jpg" alt="gallery 01"
+                                                class="img-fluid" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-widget">
+                                <h3 class="widget-title">Contact Us</h3>
+                                <div class="general-nav-2">
+                                    <ul>
+                                        <li>
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            128 Capel St, North City, Dublin, Ireland.
+                                        </li>
+                                        <li><i class="fas fa-phone-volume"></i> <span><a href="javascript:void(0)">083829102</a> <br>
+                                                <a href="javascript:void(0)">083829103</a></span>
+                                        </li>
+                                        <li><i class="fas fa-envelope"></i> <span><a
+                                                    href="mailto:services@appetizing.com">services@appetizing.com
+                                                </a> <br>
+                                                <a href="mailto:info@appetizing.com">info@appetizing.com</a></span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-        </div>
-    </div>
-</div>
-<!-- End Features Area -->
-
-<!-- Start Footer -->
-<footer class="footer-wrapper">
-    <div class="footer-bottom bg-black-2 py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="copyright-text text-center">
-                        <p>Copyright © 2022 <a href="#"><strong>Appetizing.</strong></a> All rights reserved.</p>
+            </div>
+            <div class="footer-bottom bg-black-2 py-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright-text text-center">
+                                <p>Copyright © 2022 <a href="javascript:void(0)" href="javascript:void(0)"><strong>appetizing.</strong></a> All rights reserved.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</footer>
+        </footer>

@@ -26,6 +26,10 @@ export class CheckoutComponent implements OnInit {
 
   table: any = -1;
 
+  //loader
+  loader = false;
+
+  submitted = false;
 
   constructor(private router: Router, private http: HttpClient, private itemsService: ItemsService) {
 
@@ -133,15 +137,20 @@ export class CheckoutComponent implements OnInit {
       idUser: "GUEST"
      }
 
-     this.httpPost("http://localhost:9000/order/", data).pipe(first())
+     this.submitted = true;
+
+     this.httpPost("https://appetizing.herokuapp.com/order/", data).pipe(first())
      .subscribe(
        data => {
         localStorage.removeItem('cart')
         localStorage.removeItem('cart-drink')
-        this.router.navigate(['orderstatus']);
+        setTimeout(()=>{                 
+          this.router.navigate(['orderstatus']);
+       }, 2000);  
        },
        error => {
            alert(JSON.stringify(error))
+           this.submitted = false;
        });
 
   }
@@ -150,4 +159,40 @@ export class CheckoutComponent implements OnInit {
   }
 }
 
+login() {
+  this.loader = true;
+ setTimeout(()=>{                 
+   this.router.navigate(['login']);
+}, 1500);  
+}
+
+signup() {
+ this.loader = true;
+ setTimeout(()=>{                 
+   this.router.navigate(['signup']);
+}, 1500);  
+}
+
+foodOrDrink(id:string) {
+ this.loader = true;
+ setTimeout(()=>{                 
+   this.router.navigate(['food', id]);
+}, 1500);  
+}
+
+home(){
+ this.loader = true;
+ setTimeout(()=>{                 
+   this.router.navigate(['home']);
+   this.loader = false;
+}, 1500);  
+}
+
+checkout(){
+ this.loader = true;
+ setTimeout(()=>{                 
+   this.router.navigate(['checkout']);
+}, 1500); 
+
+}
 }

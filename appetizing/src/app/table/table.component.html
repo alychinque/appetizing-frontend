@@ -1,0 +1,35 @@
+<div id="preloader">
+    <div class="preloader">
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+<div class="order-step-area section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto mb-5 mb-xs-0">
+                <div class="section-title text-center">
+                    <h2 *ngIf="!selected"class="heading-2-extra">Waiting for the table selection...</h2>
+                    <h2 *ngIf="selected" class="heading-2-extra">You selected the table: {{table}} </h2>
+                    <div *ngIf="selected" class="d-flex justify-content-center mt-5 mb-5">
+                        <div class="spinner-border text-warning" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
+                </div>
+                <div *ngIf="!selected" class="d-flex justify-content-center mt-5">
+                    <div class="spinner-grow text-warning" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <div class="spinner-grow text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

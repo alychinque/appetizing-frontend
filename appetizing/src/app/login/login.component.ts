@@ -67,23 +67,22 @@ export class LoginComponent implements OnInit {
 
       let data = { email: this.loginForm.controls['email'].value, password: this.loginForm.controls['password'].value };
 
-      this.httpPost("http://localhost:9000/login/", data).pipe(first())
+      this.httpPost("https://appetizing.herokuapp.com/login/", data).pipe(first())
         .subscribe(
           data => {
             this.errorLogin = false;
+            alert(JSON.stringify(data))
           },
           error => {
+
+            alert(JSON.stringify(error))
             this.clicked = false;
 
-            if(error.error.message == "Unauthorized not foundUser.")
+            if(error.error.message == "Unauthorized not foundUser." || error.error.message == "Unauthorized password did not match."  || error.error.message == "Unauthorized")
             {
               this.errorCred = true;
             }
-            else{
-              this.errorLogin = true;
-            }
-            
-            
+
           });
     }
     else {
