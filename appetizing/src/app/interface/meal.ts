@@ -2,6 +2,7 @@ export interface Meal {
     _id: string;
     nameMeal: string;
     quantity: number;
+    photoMeal: string;
     priceMeal: number;
     allergies: Allergy[];
     items: Items[];
