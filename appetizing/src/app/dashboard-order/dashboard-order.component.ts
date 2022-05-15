@@ -79,7 +79,7 @@ export class DashboardOrderComponent implements OnInit {
   }
 
   delete(id: string){
-    this.http.delete('https://appetizing.herokuapp.com/order'.concat(id)).pipe(first()).subscribe(
+    this.http.delete('http://localhost:9000/order/'.concat(id)).pipe(first()).subscribe(
       data => {
         this.errorSign = false;
         alert('order deleted');

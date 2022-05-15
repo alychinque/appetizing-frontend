@@ -82,7 +82,7 @@ export class DashboardAllergyComponent implements OnInit {
   }
 
   delete(id: string){
-    this.http.delete('https://appetizing.herokuapp.com/allergy/'.concat(id)).pipe(first()).subscribe(
+    this.http.delete('http://localhost:9000/allergy/'.concat(id)).pipe(first()).subscribe(
       data => {
         this.errorSign = false;
         alert('allergy deleted');

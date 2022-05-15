@@ -78,7 +78,7 @@ export class DashboardItemsComponent implements OnInit {
   }
 
   delete(id: string){
-    this.http.delete('https://appetizing.herokuapp.com/item'.concat(id)).pipe(first()).subscribe(
+    this.http.delete('http://localhost:9000/item/'.concat(id)).pipe(first()).subscribe(
       data => {
         this.errorSign = false;
         alert('item deleted');

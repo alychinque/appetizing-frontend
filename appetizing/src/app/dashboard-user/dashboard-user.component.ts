@@ -78,7 +78,7 @@ export class DashboardUserComponent implements OnInit {
   }
 
   delete(id: string){
-    this.http.delete('https://appetizing.herokuapp.com/user'.concat(id)).pipe(first()).subscribe(
+    this.http.delete('http://localhost:9000/user/'.concat(id)).pipe(first()).subscribe(
       data => {
         this.errorSign = false;
         alert('user deleted');

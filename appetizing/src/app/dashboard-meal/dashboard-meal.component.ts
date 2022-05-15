@@ -79,7 +79,7 @@ export class DashboardMealComponent implements OnInit {
   }
 
   delete(id: string){
-    this.http.delete('https://appetizing.herokuapp.com/meal'.concat(id)).pipe(first()).subscribe(
+    this.http.delete('http://localhost:9000/meal/'.concat(id)).pipe(first()).subscribe(
       data => {
         this.errorSign = false;
         alert('meal deleted');
