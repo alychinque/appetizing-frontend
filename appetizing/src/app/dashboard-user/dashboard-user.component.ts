@@ -70,10 +70,15 @@ export class DashboardUserComponent implements OnInit {
 
   deleteUser(user: User) {
 
-    let data = { id : user._id }
+    let id = user._id 
     
-    this.httpDelete("https://appetizing.herokuapp.com/user/", data).pipe(first())
-    .subscribe(
+    alert(JSON.stringify(id))
+    this.delete(id)
+  
+  }
+
+  delete(id: string){
+    this.http.delete('https://appetizing.herokuapp.com/user'.concat(id)).pipe(first()).subscribe(
       data => {
         this.errorSign = false;
         alert('user deleted');
