@@ -75,18 +75,22 @@ export class DashboardAllergyComponent implements OnInit {
 
   deleteAllergy(allergy: Allergy) {
 
-    let data = { id : allergy._id }
-   
-    this.httpDelete("https://appetizing.herokuapp.com/allergy/", data).pipe(first())
-    .subscribe(
+    let id = allergy._id 
+    
+    alert(JSON.stringify(id))
+    this.delete(id)
+  }
+
+  delete(id: string){
+    this.http.delete('https://appetizing.herokuapp.com/allergy/'.concat(id)).pipe(first()).subscribe(
       data => {
         this.errorSign = false;
-        alert('Allergy deleted');
+        alert('allergy deleted');
       },
       error => {
         alert(JSON.stringify(error))
         this.errorSign = true;
-      });;
+      });
   }
 
   dashboardHome() {

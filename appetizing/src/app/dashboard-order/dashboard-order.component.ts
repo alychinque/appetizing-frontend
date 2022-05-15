@@ -52,7 +52,6 @@ export class DashboardOrderComponent implements OnInit {
       .subscribe(
         data => {
           this.orderList = data;
-          alert(JSON.stringify(this.orderList));
         },
         error => {
           alert(JSON.stringify(error));
@@ -72,10 +71,15 @@ export class DashboardOrderComponent implements OnInit {
 
   deleteOrder(order: Order) {
 
-    let data = { id : order._id }
+    let id = order._id 
     
-    this.httpDelete("https://appetizing.herokuapp.com/order/", data).pipe(first())
-    .subscribe(
+    alert(JSON.stringify(id))
+    this.delete(id)
+  
+  }
+
+  delete(id: string){
+    this.http.delete('https://appetizing.herokuapp.com/order'.concat(id)).pipe(first()).subscribe(
       data => {
         this.errorSign = false;
         alert('order deleted');

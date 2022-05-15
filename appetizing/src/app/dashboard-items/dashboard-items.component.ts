@@ -70,10 +70,15 @@ export class DashboardItemsComponent implements OnInit {
 
   deleteItem(item: Item) {
 
-    let data = { id : item._id }
+    let id = item._id 
     
-    this.httpDelete("https://appetizing.herokuapp.com/item/", data).pipe(first())
-    .subscribe(
+    alert(JSON.stringify(id))
+    this.delete(id)
+  
+  }
+
+  delete(id: string){
+    this.http.delete('https://appetizing.herokuapp.com/item'.concat(id)).pipe(first()).subscribe(
       data => {
         this.errorSign = false;
         alert('item deleted');
