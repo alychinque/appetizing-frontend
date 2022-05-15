@@ -69,6 +69,14 @@ export class DashboardDrinksComponent implements OnInit {
 
   httpDelete(url: string, request: any) {
 
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        
+      })
+    };
+
     return this.http.delete<any>(url, request).pipe(map((data) => {
       return data;
     }));
@@ -78,7 +86,8 @@ export class DashboardDrinksComponent implements OnInit {
 
     let data = { id : drink._id }
     
-    this.httpDelete("https://appetizing.herokuapp.com/drink/", data).pipe(first())
+    alert(JSON.stringify(data))
+    this.httpDelete("http://localhost:9000/drink/", data).pipe(first())
     .subscribe(
       data => {
         this.errorSign = false;

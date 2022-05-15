@@ -52,6 +52,7 @@ export class DashboardOrderComponent implements OnInit {
       .subscribe(
         data => {
           this.orderList = data;
+          alert(JSON.stringify(this.orderList));
         },
         error => {
           alert(JSON.stringify(error));

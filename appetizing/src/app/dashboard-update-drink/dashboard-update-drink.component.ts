@@ -65,14 +65,21 @@ export class DashboardUpdateDrinkComponent implements OnInit {
   updateDrink() {
     if (this.updateDrinkForm.valid) {
 
-      this.clicked = true;
+        this.clicked = true;
+  
+        let status = this.updateDrinkForm.controls['status'].value;
+        if(status == "Yes"){
+          status= true;
+        }else{
+          status=false;
+        }
 
       let data = {
         id: this.drinkId,
         nameDrink: this.updateDrinkForm.controls['name'].value,
         priceDrink: this.updateDrinkForm.controls['price'].value,
         category: this.updateDrinkForm.controls['category'].value,
-        active: this.updateDrinkForm.controls['status'].value
+        active: status
       };
 
       this.httpUpdate("https://appetizing.herokuapp.com/drink", data).pipe(first())

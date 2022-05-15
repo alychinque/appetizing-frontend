@@ -67,6 +67,13 @@ export class DashboardUpdateMealComponent implements OnInit {
 
       this.clicked = true;
 
+      let status = this.updateMealForm.controls['status'].value;
+      if(status == "Yes"){
+        status= true;
+      }else{
+        status=false;
+      }
+
       let data = {
         id: this.mealId,
         nameMeal: this.updateMealForm.controls['name'].value,
@@ -74,7 +81,7 @@ export class DashboardUpdateMealComponent implements OnInit {
         items: this.updateMealForm.controls['items'].value,
         allergies: this.updateMealForm.controls['allergies'].value,
         extras: this.updateMealForm.controls['extras'].value,
-        active: this.updateMealForm.controls['status'].value
+        active: status
       };
 
       this.httpUpdate("https://appetizing.herokuapp.com/meal", data).pipe(first())
