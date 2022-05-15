@@ -63,7 +63,7 @@ export class DashboardAddAllergyComponent implements OnInit {
         numberAllergy: this.addAllergyForm.controls['allergyNumber'].value,
       };
 
-      this.httpPost("http://localhost:9000/allergy/", data).pipe(first())
+      this.httpPost("https://appetizing.herokuapp.com/allergy/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;

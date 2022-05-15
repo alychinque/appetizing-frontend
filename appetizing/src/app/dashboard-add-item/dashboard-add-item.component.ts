@@ -64,7 +64,7 @@ export class DashboardAddItemComponent implements OnInit {
        
       };
 
-      this.httpPost("http://localhost:9000/item/", data).pipe(first())
+      this.httpPost("https://appetizing.herokuapp.com/item/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;

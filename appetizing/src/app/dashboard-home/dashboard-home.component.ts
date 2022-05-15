@@ -27,16 +27,6 @@ export class DashboardHomeComponent implements OnInit {
     }
   }
 
-  dashboardLogin(){
-    this.router.navigate(['dashboard-login']);
-
-  }
-
-  dashboardAdmin(){
-    this.router.navigate(['dashboard-admin']);
-
-  }
-
   dashboardAllergy(){
     this.router.navigate(['dashboard-allergy']);
 

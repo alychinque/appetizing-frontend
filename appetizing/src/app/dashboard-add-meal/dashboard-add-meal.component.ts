@@ -77,7 +77,7 @@ export class DashboardAddMealComponent implements OnInit {
         active: status
       };
 
-      this.httpPost("http://localhost:9000/meal/", data).pipe(first())
+      this.httpPost("https://appetizing.herokuapp.com/meal/", data).pipe(first())
         .subscribe(
           data => {
             this.errorSign = false;
