@@ -79,16 +79,16 @@ export class DashboardDrinksComponent implements OnInit {
 
     let id = drink._id 
     
-    alert(JSON.stringify(id))
     this.delete(id)
   
   }
 
   delete(id: string){
-    this.http.delete('https://appetizing.herokuapp.com/drink'.concat(id)).pipe(first()).subscribe(
+    this.http.delete('http://localhost:9000/drink/'.concat(id)).pipe(first()).subscribe(
       data => {
         this.errorSign = false;
         alert('drink deleted');
+        this.refresh();
       },
       error => {
         alert(JSON.stringify(error))
@@ -96,13 +96,17 @@ export class DashboardDrinksComponent implements OnInit {
       });
   }
 
+  refresh(): void {
+    window.location.reload();
+}
+
   dashboardHome(){
     this.router.navigate(['dashboard-home']);
 
   }
 
-  dashboardAdmin(){
-    this.router.navigate(['dashboard-admin']);
+  dashboardDrinks() {
+    this.router.navigate(['dashboard-drinks']);
 
   }
 

@@ -82,6 +82,8 @@ export class DashboardUserComponent implements OnInit {
       data => {
         this.errorSign = false;
         alert('user deleted');
+        this.refresh();
+        
       },
       error => {
         alert(JSON.stringify(error))
@@ -89,13 +91,12 @@ export class DashboardUserComponent implements OnInit {
       });
   }
 
+  refresh(): void {
+    window.location.reload();
+}
+
   dashboardHome(){
     this.router.navigate(['dashboard-home']);
-
-  }
-
-  dashboardAdmin(){
-    this.router.navigate(['dashboard-admin']);
 
   }
 

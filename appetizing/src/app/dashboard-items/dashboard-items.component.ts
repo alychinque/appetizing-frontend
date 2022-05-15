@@ -82,6 +82,7 @@ export class DashboardItemsComponent implements OnInit {
       data => {
         this.errorSign = false;
         alert('item deleted');
+        this.refresh();
       },
       error => {
         alert(JSON.stringify(error))
@@ -89,13 +90,12 @@ export class DashboardItemsComponent implements OnInit {
       });
   }
 
+  refresh(): void {
+    window.location.reload();
+}
+
   dashboardHome(){
     this.router.navigate(['dashboard-home']);
-
-  }
-
-  dashboardAdmin(){
-    this.router.navigate(['dashboard-admin']);
 
   }
 

@@ -83,6 +83,7 @@ export class DashboardMealComponent implements OnInit {
       data => {
         this.errorSign = false;
         alert('meal deleted');
+        this.refresh();
       },
       error => {
         alert(JSON.stringify(error))
@@ -90,13 +91,12 @@ export class DashboardMealComponent implements OnInit {
       });
   }
 
+  refresh(): void {
+    window.location.reload();
+}
+
   dashboardHome(){
     this.router.navigate(['dashboard-home']);
-
-  }
-
-  dashboardAdmin(){
-    this.router.navigate(['dashboard-admin']);
 
   }
 

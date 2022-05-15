@@ -86,6 +86,7 @@ export class DashboardAllergyComponent implements OnInit {
       data => {
         this.errorSign = false;
         alert('allergy deleted');
+        this.refresh();
       },
       error => {
         alert(JSON.stringify(error))
@@ -93,13 +94,12 @@ export class DashboardAllergyComponent implements OnInit {
       });
   }
 
+  refresh(): void {
+    window.location.reload();
+}
+
   dashboardHome() {
     this.router.navigate(['dashboard-home']);
-
-  }
-
-  dashboardAdmin() {
-    this.router.navigate(['dashboard-admin']);
 
   }
 
