@@ -64,6 +64,7 @@ export class DashboardUpdateAllergyComponent implements OnInit {
       this.clicked = true;
 
       let data = {
+        id: this.allergyId,
         nameAllergy: this.updateAllergyForm.controls['allergyName'].value,
         numberAllergy: this.updateAllergyForm.controls['allergyNumber'].value,
       };

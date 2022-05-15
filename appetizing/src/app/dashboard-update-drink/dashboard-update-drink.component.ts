@@ -68,6 +68,7 @@ export class DashboardUpdateDrinkComponent implements OnInit {
       this.clicked = true;
 
       let data = {
+        id: this.drinkId,
         nameDrink: this.updateDrinkForm.controls['name'].value,
         priceDrink: this.updateDrinkForm.controls['price'].value,
         category: this.updateDrinkForm.controls['category'].value,

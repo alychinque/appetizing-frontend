@@ -65,6 +65,7 @@ export class DashboardUpdateItemComponent implements OnInit {
       this.clicked = true;
 
       let data = {
+        id:this.itemId,
         nameItem: this.updateItemForm.controls['name'].value,
         priceItem: this.updateItemForm.controls['price'].value
        

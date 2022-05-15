@@ -58,6 +58,7 @@ export class DashboardUpdateOrderComponent implements OnInit {
       this.clicked = true;
 
       let data = {
+        id:this.orderId,
         idUser: this.updateOrderForm.controls['userId'].value,
         meal: this.updateOrderForm.controls['food'].value,
         drink: this.updateOrderForm.controls['drink'].value,

@@ -68,6 +68,7 @@ export class DashboardUpdateMealComponent implements OnInit {
       this.clicked = true;
 
       let data = {
+        id: this.mealId,
         nameMeal: this.updateMealForm.controls['name'].value,
         priceMeal: this.updateMealForm.controls['price'].value,
         items: this.updateMealForm.controls['items'].value,
